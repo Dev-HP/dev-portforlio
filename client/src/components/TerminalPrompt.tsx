@@ -1,0 +1,148 @@
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Terminal } from "lucide-react";
+
+interface TerminalPromptProps {
+  onCommandExecute: (command: string) => void;
+}
+
+export default function TerminalPrompt({ onCommandExecute }: TerminalPromptProps) {
+  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+  const [currentLine, setCurrentLine] = useState(0);
+  const [currentChar, setCurrentChar] = useState(0);
+  const [showCommands, setShowCommands] = useState(false);
+  
+  const asciiArt = `
+ ██████╗ ███████╗██╗   ██╗    ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ 
+ ██╔══██╗██╔════╝██║   ██║    ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗
+ ██║  ██║█████╗  ██║   ██║    ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║
+ ██║  ██║██╔══╝  ╚██╗ ██╔╝    ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║
+ ██████╔╝███████╗ ╚████╔╝     ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝
+ ╚═════╝ ╚══════╝  ╚═══╝      ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ 
+`;
+
+  const welcomeLines = [
+    "Loading Portfolio OS v1.0...",
+    "Initializing system modules... [OK]",
+    "Loading user profile... [OK]",
+    "Starting interactive shell... [OK]",
+    "",
+    "═══════════════════════════════════════════════════════════════════",
+    "",
+    "Bem-vindo ao meu portfólio interativo!",
+    "",
+    "Sistema Operacional: Portfolio OS v1.0",
+    "Desenvolvedor: Hélio Paulo Leite de Lima",
+    "Especialização: Engenharia de Automação & Desenvolvimento de Software",
+    "Localização: Porto Velho, Rondônia - Brasil",
+    "",
+    "═══════════════════════════════════════════════════════════════════",
+    "",
+    "Type 'help' to get started or click on the commands below.",
+    ""
+  ];
+
+  const commands = [
+    { cmd: "whoami", desc: "Descubra quem eu sou" },
+    { cmd: "ls projects", desc: "Veja meus projetos" },
+    { cmd: "cat skills.txt", desc: "Minhas habilidades técnicas" },
+    { cmd: "contact --help", desc: "Entre em contato" }
+  ];
+
+  useEffect(() => {
+    if (currentLine >= welcomeLines.length) {
+      setTimeout(() => setShowCommands(true), 300);
+      return;
+    }
+
+    const line = welcomeLines[currentLine];
+    const typingSpeed = currentLine < 4 ? 15 : 25;
+
+    if (currentChar < line.length) {
+      const timer = setTimeout(() => {
+        setCurrentChar(currentChar + 1);
+      }, typingSpeed);
+      return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => {
+        setDisplayedLines([...displayedLines, line]);
+        setCurrentLine(currentLine + 1);
+        setCurrentChar(0);
+      }, currentLine < 4 ? 50 : 80);
+      return () => clearTimeout(timer);
+    }
+  }, [currentLine, currentChar, displayedLines, welcomeLines]);
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 terminal-scanline">
+      <div className="w-full max-w-4xl">
+        {/* ASCII Art Header */}
+        <pre className="text-primary text-xs sm:text-sm md:text-base mb-8 overflow-x-auto terminal-glow hidden md:block">
+          {asciiArt}
+        </pre>
+
+        {/* Mobile Header */}
+        <div className="md:hidden mb-8 flex items-center justify-center gap-3">
+          <Terminal className="w-12 h-12 text-primary terminal-glow" />
+          <h1 className="text-2xl font-bold text-primary terminal-glow">DEV PORTFOLIO</h1>
+        </div>
+
+        {/* Welcome Text */}
+        <div className="mb-8 bg-card border border-border rounded p-6 shadow-lg">
+          <pre className="text-foreground whitespace-pre-wrap font-mono text-sm leading-relaxed">
+            {displayedLines.map((line, i) => (
+              <div key={i}>{line}</div>
+            ))}
+            {currentLine < welcomeLines.length && (
+              <div>
+                {welcomeLines[currentLine].substring(0, currentChar)}
+                <span className="terminal-cursor"></span>
+              </div>
+            )}
+          </pre>
+        </div>
+
+        {/* Command Buttons */}
+        {showCommands && (
+          <div className="space-y-3 animate-fade-in">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-primary">$</span>
+              <span className="text-muted-foreground">Comandos disponíveis:</span>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {commands.map((command, index) => (
+                <Button
+                  key={command.cmd}
+                  onClick={() => onCommandExecute(command.cmd)}
+                  variant="outline"
+                  className="justify-start h-auto py-4 px-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all group"
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    opacity: 0,
+                    animation: 'fade-in 0.5s ease-out forwards'
+                  }}
+                >
+                  <div className="flex flex-col items-start gap-1 w-full">
+                    <span className="text-primary font-mono text-sm group-hover:terminal-glow">
+                      $ {command.cmd}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                      {command.desc}
+                    </span>
+                  </div>
+                </Button>
+              ))}
+            </div>
+
+            <div className="mt-6 text-center">
+              <p className="text-muted-foreground text-sm animate-pulse">
+                💡 Dica: Use os comandos acima para explorar o portfólio
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
