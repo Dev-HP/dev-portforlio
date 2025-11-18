@@ -43,10 +43,10 @@ export default function TerminalPrompt({ onCommandExecute }: TerminalPromptProps
   ];
 
   const commands = [
-    { cmd: "whoami", desc: "Descubra quem eu sou" },
-    { cmd: "ls projects", desc: "Veja meus projetos" },
-    { cmd: "cat skills.txt", desc: "Minhas habilidades técnicas" },
-    { cmd: "contact --help", desc: "Entre em contato" }
+    { cmd: "whoami", desc: "Descubra quem eu sou", key: "1" },
+    { cmd: "ls projects", desc: "Veja meus projetos", key: "2" },
+    { cmd: "cat skills.txt", desc: "Minhas habilidades técnicas", key: "3" },
+    { cmd: "contact --help", desc: "Entre em contato", key: "4" }
   ];
 
   useEffect(() => {
@@ -116,28 +116,36 @@ export default function TerminalPrompt({ onCommandExecute }: TerminalPromptProps
                   key={command.cmd}
                   onClick={() => onCommandExecute(command.cmd)}
                   variant="outline"
-                  className="justify-start h-auto py-4 px-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all group"
+                  className="justify-start h-auto py-4 px-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all group relative"
                   style={{ 
                     animationDelay: `${index * 100}ms`,
                     opacity: 0,
                     animation: 'fade-in 0.5s ease-out forwards'
                   }}
                 >
-                  <div className="flex flex-col items-start gap-1 w-full">
-                    <span className="text-primary font-mono text-sm group-hover:terminal-glow">
-                      $ {command.cmd}
-                    </span>
-                    <span className="text-muted-foreground text-xs">
-                      {command.desc}
-                    </span>
+                  <div className="flex items-center gap-3 w-full">
+                    <div className="flex-shrink-0 w-6 h-6 rounded border border-primary/30 flex items-center justify-center text-primary text-xs font-bold group-hover:border-primary group-hover:bg-primary/20">
+                      {command.key}
+                    </div>
+                    <div className="flex flex-col items-start gap-1 flex-1">
+                      <span className="text-primary font-mono text-sm group-hover:terminal-glow">
+                        $ {command.cmd}
+                      </span>
+                      <span className="text-muted-foreground text-xs">
+                        {command.desc}
+                      </span>
+                    </div>
                   </div>
                 </Button>
               ))}
             </div>
 
-            <div className="mt-6 text-center">
-              <p className="text-muted-foreground text-sm animate-pulse">
-                💡 Dica: Use os comandos acima para explorar o portfólio
+            <div className="mt-6 text-center space-y-2">
+              <p className="text-muted-foreground text-sm">
+                💡 Dica: Clique nos botões ou pressione as teclas <kbd className="px-2 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-xs">1-4</kbd>
+              </p>
+              <p className="text-muted-foreground text-xs">
+                Pressione <kbd className="px-2 py-1 bg-secondary/20 text-secondary border border-secondary/30 rounded text-xs">ESC</kbd> para voltar
               </p>
             </div>
           </div>

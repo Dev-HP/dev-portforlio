@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin, Code2 } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Code2, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AboutSectionProps {
@@ -41,14 +41,14 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
               </div>
 
               {/* Social Links */}
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <Button
                   variant="outline"
                   size="icon"
                   className="border-primary/30 hover:border-primary hover:bg-primary/10"
                   asChild
                 >
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <Github className="w-4 h-4" />
                   </a>
                 </Button>
@@ -58,7 +58,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   className="border-primary/30 hover:border-primary hover:bg-primary/10"
                   asChild
                 >
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <Linkedin className="w-4 h-4" />
                   </a>
                 </Button>
@@ -68,8 +68,18 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   className="border-primary/30 hover:border-primary hover:bg-primary/10"
                   asChild
                 >
-                  <a href="mailto:paulohelio751@gmail.com">
+                  <a href="mailto:paulohelio751@gmail.com" aria-label="Email">
                     <Mail className="w-4 h-4" />
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2"
+                  asChild
+                >
+                  <a href="/cv-helio-paulo.pdf" download aria-label="Download CV">
+                    <Download className="w-4 h-4" />
+                    <span className="text-sm">Download CV</span>
                   </a>
                 </Button>
               </div>

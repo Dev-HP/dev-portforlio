@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail, Phone, Send, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Send, MapPin, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 
 interface ContactSectionProps {
   onBack: () => void;
@@ -15,17 +16,42 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
     email: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Simulate form submission
-    toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.", {
-      description: "Obrigado por entrar em contato!"
-    });
-    
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      // EmailJS configuration (você precisará configurar sua conta)
+      // Por enquanto, vamos simular o envio
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Descomentar quando configurar EmailJS:
+      // await emailjs.send(
+      //   'YOUR_SERVICE_ID',
+      //   'YOUR_TEMPLATE_ID',
+      //   {
+      //     from_name: formData.name,
+      //     from_email: formData.email,
+      //     message: formData.message,
+      //   },
+      //   'YOUR_PUBLIC_KEY'
+      // );
+      
+      toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.", {
+        description: "Obrigado por entrar em contato!"
+      });
+      
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error("Erro ao enviar mensagem. Tente novamente ou use o email direto.", {
+        description: "paulohelio751@gmail.com"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -154,9 +180,19 @@ INTERESSES
               <Button
                 type="submit"
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                disabled={isSubmitting}
               >
-                <Send className="w-4 h-4 mr-2" />
-                Enviar Mensagem
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Enviar Mensagem
+                  </>
+                )}
               </Button>
             </form>
           </div>
