@@ -1,0 +1,45 @@
+{
+  "name": "Hélio Paulo - Dev Portfolio",
+  "short_name": "HP Portfolio",
+  "description": "Portfólio interativo de Hélio Paulo Leite de Lima - Engenheiro de Automação e Desenvolvedor de Software",
+  "start_url": "/dev-portforlio/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ff80",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/dev-portforlio/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/dev-portforlio/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/dev-portforlio/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "engineering"],
+  "screenshots": [
+    {
+      "src": "/dev-portforlio/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/dev-portforlio/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

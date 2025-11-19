@@ -1,9 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import TerminalPrompt from "@/components/TerminalPrompt";
-import AboutSection from "@/components/AboutSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import SkillsSection from "@/components/SkillsSection";
-import ContactSection from "@/components/ContactSection";
+
+// Lazy load sections for better performance
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
+const SkillsSection = lazy(() => import("@/components/SkillsSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+
+// Loading component
+const SectionLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="text-center">
+      <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      <p className="mt-4 text-primary font-mono">Loading...</p>
+    </div>
+  </div>
+);
 
 type Section = "prompt" | "about" | "projects" | "skills" | "contact";
 
@@ -80,10 +92,12 @@ export default function Home() {
             skipIntro={hasSeenIntro}
           />
         )}
-        {currentSection === "about" && <AboutSection onBack={handleBack} />}
-        {currentSection === "projects" && <ProjectsSection onBack={handleBack} />}
-        {currentSection === "skills" && <SkillsSection onBack={handleBack} />}
-        {currentSection === "contact" && <ContactSection onBack={handleBack} />}
+        <Suspense fallback={<SectionLoader />}>
+          {currentSection === "about" && <AboutSection onBack={handleBack} />}
+          {currentSection === "projects" && <ProjectsSection onBack={handleBack} />}
+          {currentSection === "skills" && <SkillsSection onBack={handleBack} />}
+          {currentSection === "contact" && <ContactSection onBack={handleBack} />}
+        </Suspense>
       </div>
     </div>
   );

@@ -1,0 +1,9 @@
+# robots.txt for Hélio Paulo Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dev-hp.github.io/dev-portforlio/sitemap.xml
+
+# Disallow admin or private paths (if any)
+# Disallow: /admin/
