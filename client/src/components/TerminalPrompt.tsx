@@ -4,13 +4,14 @@ import { Terminal } from "lucide-react";
 
 interface TerminalPromptProps {
   onCommandExecute: (command: string) => void;
+  skipIntro?: boolean;
 }
 
-export default function TerminalPrompt({ onCommandExecute }: TerminalPromptProps) {
+export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: TerminalPromptProps) {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
-  const [showCommands, setShowCommands] = useState(false);
+  const [showCommands, setShowCommands] = useState(skipIntro);
   
   const asciiArt = `
  ██████╗ ███████╗██╗   ██╗    ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ 
@@ -50,6 +51,14 @@ export default function TerminalPrompt({ onCommandExecute }: TerminalPromptProps
   ];
 
   useEffect(() => {
+    // If skipIntro is true, show all lines immediately
+    if (skipIntro && displayedLines.length === 0) {
+      setDisplayedLines(welcomeLines);
+      setCurrentLine(welcomeLines.length);
+      setShowCommands(true);
+      return;
+    }
+
     if (currentLine >= welcomeLines.length) {
       setTimeout(() => setShowCommands(true), 300);
       return;
@@ -71,7 +80,7 @@ export default function TerminalPrompt({ onCommandExecute }: TerminalPromptProps
       }, currentLine < 4 ? 50 : 80);
       return () => clearTimeout(timer);
     }
-  }, [currentLine, currentChar, displayedLines, welcomeLines]);
+  }, [currentLine, currentChar, displayedLines, welcomeLines, skipIntro]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 terminal-scanline">

@@ -9,8 +9,14 @@ type Section = "prompt" | "about" | "projects" | "skills" | "contact";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState<Section>("prompt");
+  const [hasSeenIntro, setHasSeenIntro] = useState(false);
 
   const handleCommandExecute = (command: string) => {
+    // Mark intro as seen when user interacts
+    if (!hasSeenIntro) {
+      setHasSeenIntro(true);
+    }
+
     switch (command) {
       case "whoami":
         setCurrentSection("about");
@@ -69,7 +75,10 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <div className="section-transition">
         {currentSection === "prompt" && (
-          <TerminalPrompt onCommandExecute={handleCommandExecute} />
+          <TerminalPrompt 
+            onCommandExecute={handleCommandExecute} 
+            skipIntro={hasSeenIntro}
+          />
         )}
         {currentSection === "about" && <AboutSection onBack={handleBack} />}
         {currentSection === "projects" && <ProjectsSection onBack={handleBack} />}
