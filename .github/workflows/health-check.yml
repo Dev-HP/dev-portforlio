@@ -1,0 +1,46 @@
+name: Health Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Roda todo domingo às 00:00 UTC
+    - cron: '0 0 * * 0'
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Type Check
+        run: pnpm run check
+
+      - name: Build Test
+        run: pnpm run build
+
+      - name: Check Bundle Size
+        run: |
+          echo "📦 Checking bundle size..."
+          du -sh dist/public
+          echo "✅ Build completed successfully!"
+
+      - name: Health Check Summary
+        run: |
+          echo "✅ All health checks passed!"
+          echo "📊 Project Status: Healthy"
+          echo "🔧 TypeScript: OK"
+          echo "📦 Build: OK"

@@ -1,10 +1,12 @@
-name: Deploy to GitHub Pages
+name: Manual Deploy
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual deploy'
+        required: false
+        default: 'Manual deployment triggered'
 
 permissions:
   contents: read
@@ -32,35 +34,11 @@ jobs:
         with:
           version: 10
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Type Check
-        run: pnpm run check
+        run: pnpm install
 
       - name: Build
         run: pnpm run build
-
-      - name: Build Summary
-        run: |
-          echo "✅ Build completed successfully!"
-          echo "📦 Bundle size:"
-          du -sh dist/public
-          echo "📄 Files generated:"
-          ls -lh dist/public/assets/ | head -10
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -81,8 +59,8 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         
-      - name: Deployment Success
+      - name: Deployment Summary
         run: |
-          echo "🚀 Deploy completed successfully!"
+          echo "✅ Deploy completed successfully!"
           echo "🌐 Site URL: ${{ steps.deployment.outputs.page_url }}"
-          echo "✨ Your portfolio is now live!"
+          echo "📝 Reason: ${{ github.event.inputs.reason }}"
