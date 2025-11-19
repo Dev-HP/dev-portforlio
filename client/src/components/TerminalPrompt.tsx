@@ -34,7 +34,7 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
     "",
     "Sistema Operacional: Portfolio OS v1.0",
     "Desenvolvedor: Hélio Paulo Leite de Lima",
-    "Especialização: Engenharia de Automação & Desenvolvimento de Software",
+    "Especialização: Desenvolvimento de Software e Automação",
     "Localização: Porto Velho, Rondônia - Brasil",
     "",
     "═══════════════════════════════════════════════════════════════════",
