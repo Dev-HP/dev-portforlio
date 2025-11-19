@@ -64,14 +64,14 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com",
+      url: "https://www.linkedin.com/in/helio-leite",
       username: "/in/helio-leite"
     },
     {
       name: "GitHub",
       icon: Github,
-      url: "https://github.com",
-      username: "@heliopauloleite"
+      url: "https://github.com/Dev-HP",
+      username: "@Dev-HP"
     },
     {
       name: "Telefone",

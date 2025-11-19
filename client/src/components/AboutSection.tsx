@@ -48,7 +48,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   className="border-primary/30 hover:border-primary hover:bg-primary/10"
                   asChild
                 >
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <a href="https://github.com/Dev-HP" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <Github className="w-4 h-4" />
                   </a>
                 </Button>
@@ -58,7 +58,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   className="border-primary/30 hover:border-primary hover:bg-primary/10"
                   asChild
                 >
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/in/helio-leite" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <Linkedin className="w-4 h-4" />
                   </a>
                 </Button>

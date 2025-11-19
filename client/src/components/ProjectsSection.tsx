@@ -11,7 +11,7 @@ const projects = [
     name: "NeuroScope - Dashboard Clínico com IA",
     description: "Plataforma clínica baseada em Inteligência Artificial para apoiar o diagnóstico do Transtorno do Espectro Autista (TEA) em adultos. Utiliza algoritmos de Machine Learning (Random Forest, SVM, Redes Neurais) para análise de padrões clínicos.",
     technologies: ["Python", "Machine Learning", "IA", "Random Forest", "SVM", "Redes Neurais", "Matplotlib", "Plotly", "Microsserviços"],
-    github: "https://github.com",
+    github: "https://github.com/Dev-HP/neuroscope",
     demo: null,
     status: "development",
     award: "Publicação: ENFOC 2025 (maio/2025)"
@@ -20,7 +20,7 @@ const projects = [
     name: "Sistema de Irrigação Automatizado",
     description: "Sistema inteligente de irrigação utilizando Arduino que mede a umidade do solo e aciona automaticamente bombas quando necessário. Premiado em feiras nacionais e internacionais por sua inovação e sustentabilidade.",
     technologies: ["Arduino", "C++", "Sensores", "Automação", "IoT"],
-    github: "https://github.com",
+    github: "https://github.com/Dev-HP/sistema-irrigacao",
     demo: null,
     status: "production",
     award: "🏆 Premiado: FeroCIT 2017 e Ciência Jovem Internacional 2017"
@@ -29,7 +29,7 @@ const projects = [
     name: "Line Following Robot",
     description: "Robô autônomo seguidor de linha desenvolvido com Arduino, demonstrando habilidades em programação, eletrônica e integração de componentes complexos.",
     technologies: ["Arduino", "C++", "Robótica", "Sensores", "Eletrônica"],
-    github: "https://github.com",
+    github: "https://github.com/Dev-HP/line-following-robot",
     demo: null,
     status: "production",
     award: null
@@ -38,7 +38,7 @@ const projects = [
     name: "Motor Nitro V1",
     description: "Projeto de robótica focado em programação e desenho técnico, aplicando conceitos de eletrônica para criar dispositivos autônomos com Arduino.",
     technologies: ["Arduino", "CAD", "Desenho Técnico", "Eletrônica", "C++"],
-    github: "https://github.com",
+    github: "https://github.com/Dev-HP/motor-nitro-v1",
     demo: null,
     status: "production",
     award: null
