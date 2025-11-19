@@ -60,12 +60,14 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
     }
 
     if (currentLine >= welcomeLines.length) {
-      setTimeout(() => setShowCommands(true), 300);
+      // Mostrar comandos mais rápido: 100ms ao invés de 300ms
+      setTimeout(() => setShowCommands(true), 100);
       return;
     }
 
     const line = welcomeLines[currentLine];
-    const typingSpeed = currentLine < 4 ? 15 : 25;
+    // Velocidades muito mais rápidas: 5ms para loading, 10ms para texto normal
+    const typingSpeed = currentLine < 4 ? 5 : 10;
 
     if (currentChar < line.length) {
       const timer = setTimeout(() => {
@@ -73,11 +75,12 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
       }, typingSpeed);
       return () => clearTimeout(timer);
     } else {
+      // Delay entre linhas: 20ms para loading, 30ms para texto normal
       const timer = setTimeout(() => {
         setDisplayedLines([...displayedLines, line]);
         setCurrentLine(currentLine + 1);
         setCurrentChar(0);
-      }, currentLine < 4 ? 50 : 80);
+      }, currentLine < 4 ? 20 : 30);
       return () => clearTimeout(timer);
     }
   }, [currentLine, currentChar, displayedLines, welcomeLines, skipIntro]);
