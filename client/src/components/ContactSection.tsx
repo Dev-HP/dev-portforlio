@@ -23,29 +23,55 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
     setIsSubmitting(true);
     
     try {
-      // EmailJS configuration (você precisará configurar sua conta)
-      // Por enquanto, vamos simular o envio
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // EmailJS configuration
+      // Para configurar: https://www.emailjs.com/
+      // 1. Crie uma conta gratuita
+      // 2. Adicione um serviço de email (Gmail, Outlook, etc)
+      // 3. Crie um template de email
+      // 4. Substitua as variáveis abaixo com suas credenciais
       
-      // Descomentar quando configurar EmailJS:
-      // await emailjs.send(
-      //   'YOUR_SERVICE_ID',
-      //   'YOUR_TEMPLATE_ID',
-      //   {
-      //     from_name: formData.name,
-      //     from_email: formData.email,
-      //     message: formData.message,
-      //   },
-      //   'YOUR_PUBLIC_KEY'
-      // );
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
       
-      toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.", {
-        description: "Obrigado por entrar em contato!"
-      });
+      // Se as credenciais não estão configuradas, simula o envio
+      if (SERVICE_ID === 'YOUR_SERVICE_ID') {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        toast.success("Mensagem simulada! Configure EmailJS para envios reais.", {
+          description: "Veja o console para instruções."
+        });
+        console.log('📧 Para configurar EmailJS:');
+        console.log('1. Acesse https://www.emailjs.com/');
+        console.log('2. Crie uma conta gratuita');
+        console.log('3. Configure um serviço de email');
+        console.log('4. Crie um template');
+        console.log('5. Adicione as variáveis no arquivo .env:');
+        console.log('   VITE_EMAILJS_SERVICE_ID=seu_service_id');
+        console.log('   VITE_EMAILJS_TEMPLATE_ID=seu_template_id');
+        console.log('   VITE_EMAILJS_PUBLIC_KEY=sua_public_key');
+      } else {
+        // Envio real com EmailJS
+        await emailjs.send(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+            to_email: 'paulohelio751@gmail.com'
+          },
+          PUBLIC_KEY
+        );
+        
+        toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.", {
+          description: "Obrigado por entrar em contato!"
+        });
+      }
       
       // Reset form
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error('Erro ao enviar email:', error);
       toast.error("Erro ao enviar mensagem. Tente novamente ou use o email direto.", {
         description: "paulohelio751@gmail.com"
       });
