@@ -62,13 +62,23 @@ const skillCategories = [
 
 export default function SkillsSection({ onBack }: SkillsSectionProps) {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [animateSkills, setAnimateSkills] = useState(false);
 
   useEffect(() => {
+    // Trigger skill bar animations after component mounts
+    const timer = setTimeout(() => {
+      setAnimateSkills(true);
+    }, 300);
+
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -119,7 +129,10 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
                       <div className="h-2 bg-background rounded-full overflow-hidden border border-border">
                         <div
                           className={`h-full bg-${category.color} transition-all duration-1000 ease-out`}
-                          style={{ width: `${skill.level}%` }}
+                          style={{ 
+                            width: animateSkills ? `${skill.level}%` : '0%',
+                            transitionDelay: `${(categoryIndex * 100) + (skillIndex * 50)}ms`
+                          }}
                         >
                           <div className="h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                         </div>
