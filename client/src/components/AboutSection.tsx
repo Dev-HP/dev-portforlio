@@ -21,8 +21,12 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
           <div className="flex flex-col md:flex-row gap-6 mb-8">
             {/* Profile Image */}
             <div className="flex-shrink-0">
-              <div className="w-32 h-32 rounded-full border-2 border-primary bg-card flex items-center justify-center terminal-glow">
-                <Code2 className="w-16 h-16 text-primary" />
+              <div className="w-32 h-32 rounded-full border-2 border-primary overflow-hidden terminal-glow">
+                <img 
+                  src="/profile.jpg" 
+                  alt="Hélio Paulo Leite de Lima" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
