@@ -100,8 +100,12 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
               <h3 className="text-lg font-semibold text-primary mb-2">$ cat bio.txt</h3>
               <div className="text-foreground space-y-3">
                 <p>
-                  Estudante de Engenharia de Controle e Automação (IFRO) e Engenharia de Software (UNINTER), 
-                  com forte interesse por tecnologia e inovação. Experiência em manutenção eletrônica, 
+                  Profissional Full Stack de Automação, atuando na intersecção estratégica entre Hardware, 
+                  Software e Inteligência Artificial.
+                </p>
+                <p>
+                  Sou estudante de Engenharia de Controle e Automação (IFRO) e Engenharia de Software (UNINTER), 
+                  com forte interesse por tecnologia e inovação. Possuo experiência em manutenção eletrônica, 
                   programação e desenvolvimento de projetos que integram hardware e software.
                 </p>
                 <p>
@@ -124,16 +128,24 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   <p className="text-primary font-semibold">Analista de T.I @ Planeta Distribuidora LTDA</p>
                   <p className="text-muted-foreground text-sm">01/2025 - 07/2025 | Porto Velho, RO</p>
                   <p className="text-foreground text-sm mt-1">
-                    Administração de redes, servidores e sistemas. Desenvolvimento de scripts e automações. 
-                    Gerenciamento de banco de dados Oracle. Suporte técnico de Nível 1, 2 e 3.
+                    Administração de redes, servidores e sistemas. Desenvolvimento de scripts e automações (RPA/Python). 
+                    Gerenciamento de banco de dados Oracle. Suporte técnico de Nível 1, 2 e 3 (ITIL).
+                  </p>
+                </div>
+                <div>
+                  <p className="text-primary font-semibold">Técnico em Eletrônica @ Del Engenharia Clínica</p>
+                  <p className="text-muted-foreground text-sm">09/2024 - 01/2025 | Porto Velho, RO</p>
+                  <p className="text-foreground text-sm mt-1">
+                    Manutenção preventiva e corretiva em equipamentos médicos hospitalares. Testes de segurança 
+                    elétrica e calibrações precisas. Otimização de processos de manutenção.
                   </p>
                 </div>
                 <div>
                   <p className="text-primary font-semibold">Técnico Eletrônico @ WPS Estacionamento LTDA</p>
                   <p className="text-muted-foreground text-sm">08/2023 - 09/2024 | Porto Velho, RO</p>
                   <p className="text-foreground text-sm mt-1">
-                    Gestão de manutenção de máquinas. Administração de banco de dados. Configuração e 
-                    manutenção de redes. Montagem de sistemas Linux (CentOS) em servidores.
+                    Gestão de manutenção de máquinas (ATMs, Terminais de Cancela). Administração de banco de dados. 
+                    Configuração e manutenção de redes. Montagem de sistemas Linux (CentOS) em servidores.
                   </p>
                 </div>
               </div>
@@ -169,7 +181,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   Automação
                 </span>
                 <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
-                  Desenvolvimento
+                  Desenvolvimento Full Stack
                 </span>
                 <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
                   Análise de Dados
