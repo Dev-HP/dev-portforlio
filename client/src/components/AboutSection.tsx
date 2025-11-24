@@ -1,4 +1,4 @@
-import { Mail, MapPin, Download, Award, Briefcase, Code2, Database, Cpu, Wrench, Presentation } from "lucide-react";
+import { Mail, MapPin, Download, Award, Briefcase, Code2, Cpu, Wrench, Presentation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AboutSectionProps {
@@ -142,54 +142,36 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
               </div>
             </div>
 
-            {/* Technical Skills */}
+            {/* Technical Skills - Consolidated */}
             <div className="border-l-2 border-primary pl-4 mt-6">
               <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
                 <Code2 className="w-5 h-5" />
-                $ cat skills.json
+                $ cat skills.txt
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="transition-all duration-200 hover:translate-x-1">
-                  <p className="text-secondary font-semibold flex items-center gap-2">
-                    <Database className="w-4 h-4" />
-                    Banco de Dados
-                  </p>
-                  <p className="text-foreground text-sm">Oracle, MySQL, MongoDB, SQL</p>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-secondary font-semibold mb-1">💻 Linguagens & Frameworks</p>
+                  <p className="text-foreground text-sm">Python, Java, JavaScript, C/C++, PHP, SQL</p>
                 </div>
-                <div className="transition-all duration-200 hover:translate-x-1">
-                  <p className="text-secondary font-semibold flex items-center gap-2">
-                    <Code2 className="w-4 h-4" />
-                    Programação
-                  </p>
-                  <p className="text-foreground text-sm">Python, Java, JavaScript, C/C++, PHP</p>
+                <div>
+                  <p className="text-secondary font-semibold mb-1">🗄️ Banco de Dados</p>
+                  <p className="text-foreground text-sm">Oracle, MySQL, MongoDB</p>
                 </div>
-                <div className="transition-all duration-200 hover:translate-x-1">
-                  <p className="text-secondary font-semibold flex items-center gap-2">
-                    <Cpu className="w-4 h-4" />
-                    Hardware & IoT
-                  </p>
+                <div>
+                  <p className="text-secondary font-semibold mb-1">🤖 IA & Machine Learning</p>
+                  <p className="text-foreground text-sm">Scikit-learn, OpenCV, Pandas, NumPy, Power BI, Plotly</p>
+                </div>
+                <div>
+                  <p className="text-secondary font-semibold mb-1">⚙️ Hardware & Automação</p>
                   <p className="text-foreground text-sm">Arduino, ESP32, CLP Siemens S7, HMI, PID</p>
                 </div>
-                <div className="transition-all duration-200 hover:translate-x-1">
-                  <p className="text-secondary font-semibold flex items-center gap-2">
-                    <Wrench className="w-4 h-4" />
-                    Infraestrutura
-                  </p>
-                  <p className="text-foreground text-sm">Linux, Windows Server, VMware, Docker, pfSense</p>
+                <div>
+                  <p className="text-secondary font-semibold mb-1">🔧 Infraestrutura & DevOps</p>
+                  <p className="text-foreground text-sm">Linux, Windows Server, VMware, Docker, Git, Scrum, ITIL</p>
                 </div>
-                <div className="transition-all duration-200 hover:translate-x-1">
-                  <p className="text-secondary font-semibold flex items-center gap-2">
-                    <Code2 className="w-4 h-4" />
-                    IA & Dados
-                  </p>
-                  <p className="text-foreground text-sm">Scikit-learn, OpenCV, Pandas, Power BI, Plotly</p>
-                </div>
-                <div className="transition-all duration-200 hover:translate-x-1">
-                  <p className="text-secondary font-semibold flex items-center gap-2">
-                    <Wrench className="w-4 h-4" />
-                    DevOps & Segurança
-                  </p>
-                  <p className="text-foreground text-sm">Git, Scrum, ITIL, Firewall, Backup em Nuvem</p>
+                <div>
+                  <p className="text-secondary font-semibold mb-1">📜 Certificações</p>
+                  <p className="text-foreground text-sm">Git e Versionamento • NLW Connect (Java) • IoT • Redes com VLANs • NLW Pocket (JS Full-stack)</p>
                 </div>
               </div>
             </div>
@@ -264,31 +246,6 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   <p className="text-primary font-semibold">Técnico em Eletromecânica</p>
                   <p className="text-muted-foreground text-sm">SENAI CETEM</p>
                 </div>
-              </div>
-            </div>
-
-            {/* Certifications */}
-            <div className="border-l-2 border-accent pl-4 mt-6">
-              <h3 className="text-lg font-semibold text-accent mb-2 flex items-center gap-2">
-                <Award className="w-5 h-5" />
-                $ cat certifications.txt
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105">
-                  Git e Versionamento
-                </span>
-                <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105">
-                  NLW Connect - Java
-                </span>
-                <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105">
-                  Internet das Coisas (IoT)
-                </span>
-                <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105">
-                  Redes com VLANs
-                </span>
-                <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105">
-                  NLW Pocket - Javascript Full-stack
-                </span>
               </div>
             </div>
 
