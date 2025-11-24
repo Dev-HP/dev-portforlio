@@ -85,7 +85,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                   className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2"
                   asChild
                 >
-                  <a href="/cv-helio-paulo.pdf" download aria-label="Download CV">
+                  <a href="/dev-portforlio/cv-helio-paulo.pdf" download aria-label="Download CV">
                     <Download className="w-4 h-4" />
                     <span className="text-sm">Download CV</span>
                   </a>
