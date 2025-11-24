@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Code2, Database, Wrench, Brain } from "lucide-react";
+import { Code2, Database, Wrench, Brain, ArrowUp, Award } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface SkillsSectionProps {
   onBack: () => void;
@@ -60,8 +61,22 @@ const skillCategories = [
 ];
 
 export default function SkillsSection({ onBack }: SkillsSectionProps) {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen p-4 sm:p-8 terminal-scanline">
+    <div className="min-h-screen p-4 sm:p-8 terminal-scanline animate-in fade-in duration-500">
       <div className="max-w-6xl mx-auto">
         {/* Command Header */}
         <div className="mb-6 flex items-center gap-2">
@@ -76,7 +91,8 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
             return (
               <div
                 key={categoryIndex}
-                className="bg-card border border-border rounded p-6"
+                className="bg-card border border-border rounded p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 animate-in slide-in-from-bottom duration-700"
+                style={{ animationDelay: `${categoryIndex * 100}ms` }}
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-4">
@@ -116,8 +132,35 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
           })}
         </div>
 
+        {/* Certifications */}
+        <div className="bg-card border border-border rounded p-6 mb-6 animate-in slide-in-from-bottom duration-700 delay-500">
+          <div className="border-l-2 border-accent pl-4">
+            <h3 className="text-lg font-semibold text-accent mb-3 flex items-center gap-2">
+              <Award className="w-5 h-5" />
+              $ cat certifications.txt
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105 hover:bg-accent/30">
+                Git e Versionamento
+              </span>
+              <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105 hover:bg-accent/30">
+                NLW Connect - Java
+              </span>
+              <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105 hover:bg-accent/30">
+                Internet das Coisas (IoT)
+              </span>
+              <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105 hover:bg-accent/30">
+                Redes com VLANs
+              </span>
+              <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded text-sm transition-all duration-200 hover:scale-105 hover:bg-accent/30">
+                NLW Pocket - Javascript Full-stack
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* Additional Skills */}
-        <div className="bg-card border border-border rounded p-6 mb-6">
+        <div className="bg-card border border-border rounded p-6 mb-6 animate-in slide-in-from-bottom duration-700 delay-600">
           <div className="border-l-2 border-primary pl-4 mb-4">
             <h3 className="text-lg font-semibold text-primary mb-2">
               $ cat languages.txt
@@ -168,14 +211,27 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
           </div>
         </div>
 
-        {/* Back Button */}
-        <Button
-          onClick={onBack}
-          variant="outline"
-          className="border-primary/30 hover:border-primary hover:bg-primary/10"
-        >
-          <span className="text-primary">$ clear</span>
-        </Button>
+        {/* Buttons */}
+        <div className="flex gap-3 flex-wrap">
+          <Button
+            onClick={onBack}
+            variant="outline"
+            className="border-primary/30 hover:border-primary hover:bg-primary/10"
+          >
+            <span className="text-primary">$ clear</span>
+          </Button>
+          
+          {showScrollTop && (
+            <Button
+              onClick={scrollToTop}
+              variant="outline"
+              className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2 animate-in fade-in duration-300"
+            >
+              <ArrowUp className="w-4 h-4" />
+              <span className="text-accent">Voltar ao topo</span>
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
