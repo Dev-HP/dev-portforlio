@@ -1,13 +1,28 @@
-import { Mail, MapPin, Download, Award, Briefcase, Code2, Cpu, Wrench, Presentation } from "lucide-react";
+import { Mail, MapPin, Download, Award, Briefcase, Code2, Cpu, Wrench, Presentation, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 interface AboutSectionProps {
   onBack: () => void;
 }
 
 export default function AboutSection({ onBack }: AboutSectionProps) {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen p-4 sm:p-8 terminal-scanline">
+    <div className="min-h-screen p-4 sm:p-8 terminal-scanline animate-in fade-in duration-500">
       <div className="max-w-4xl mx-auto">
         {/* Command Header */}
         <div className="mb-6 flex items-center gap-2">
@@ -96,7 +111,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
 
           {/* Bio */}
           <div className="space-y-4">
-            <div className="border-l-2 border-primary pl-4">
+            <div className="border-l-2 border-primary pl-4 animate-in slide-in-from-left duration-700">
               <h3 className="text-lg font-semibold text-primary mb-2">$ cat bio.txt</h3>
               <div className="text-foreground space-y-3">
                 <p>
@@ -120,8 +135,8 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
               </div>
             </div>
 
-            {/* Awards & Achievements */}
-            <div className="border-l-2 border-accent pl-4 mt-6">
+            {/* Technical Skills - Moved here after Bio */}
+            <div className="border-l-2 border-primary pl-4 mt-6 animate-in slide-in-from-left duration-700 delay-100">
               <h3 className="text-lg font-semibold text-accent mb-2 flex items-center gap-2">
                 <Award className="w-5 h-5" />
                 $ cat awards.txt
@@ -310,14 +325,39 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
           </div>
         </div>
 
-        {/* Back Button */}
-        <Button
-          onClick={onBack}
-          variant="outline"
-          className="border-primary/30 hover:border-primary hover:bg-primary/10"
-        >
-          <span className="text-primary">$ clear</span>
-        </Button>
+        {/* Buttons */}
+        <div className="flex gap-3 flex-wrap">
+          <Button
+            onClick={onBack}
+            variant="outline"
+            className="border-primary/30 hover:border-primary hover:bg-primary/10"
+          >
+            <span className="text-primary">$ clear</span>
+          </Button>
+          
+          {showScrollTop && (
+            <Button
+              onClick={scrollToTop}
+              variant="outline"
+              className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2 animate-in fade-in duration-300"
+            >
+              <ArrowUp className="w-4 h-4" />
+              <span className="text-accent">Voltar ao topo</span>
+            </Button>
+          )}
+        </div>
+
+        {/* Scroll Indicator - Only show at top */}
+        {!showScrollTop && (
+          <div className="mt-6 flex justify-center animate-bounce">
+            <div className="text-muted-foreground text-sm flex flex-col items-center gap-1">
+              <span>Role para ver mais</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
