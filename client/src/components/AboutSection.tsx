@@ -300,6 +300,14 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
               </h3>
               <div className="space-y-3">
                 <div className="transition-all duration-200 hover:translate-x-1 hover:bg-primary/5 p-2 rounded">
+                  <p className="text-primary font-semibold">🎤 Palestra: IA e Machine Learning na Engenharia</p>
+                  <p className="text-muted-foreground text-sm">1ª Semana das Graduações - IFRO</p>
+                  <p className="text-foreground text-sm mt-1">
+                    Apresentação sobre conceitos introdutórios, aplicações práticas e novas tendências de 
+                    Inteligência Artificial e Machine Learning na Engenharia de Controle e Automação.
+                  </p>
+                </div>
+                <div className="transition-all duration-200 hover:translate-x-1 hover:bg-primary/5 p-2 rounded">
                   <p className="text-primary font-semibold">🎤 Palestra sobre Redes Neurais</p>
                   <p className="text-muted-foreground text-sm">3ª Semana das Graduações - IFRO</p>
                   <p className="text-foreground text-sm mt-1">
