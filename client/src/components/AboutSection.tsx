@@ -1,4 +1,4 @@
-import { Mail, MapPin, Download } from "lucide-react";
+import { Mail, MapPin, Download, Award, Briefcase, Code2, Database, Cpu, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AboutSectionProps {
@@ -21,7 +21,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
           <div className="flex flex-col md:flex-row gap-6 mb-8">
             {/* Profile Image */}
             <div className="flex-shrink-0 mx-auto md:mx-0">
-              <div className="w-48 h-48 rounded-full border-4 border-primary overflow-hidden terminal-glow">
+              <div className="w-48 h-48 rounded-full border-4 border-primary overflow-hidden terminal-glow transition-transform duration-300 hover:scale-105">
                 <img 
                   src="/dev-portforlio/profile.jpg" 
                   alt="Hélio Paulo Leite de Lima" 
@@ -49,7 +49,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-primary/30 hover:border-primary hover:bg-primary/10"
+                  className="border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200 hover:scale-110"
                   asChild
                 >
                   <a href="https://github.com/Dev-HP" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -61,7 +61,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-primary/30 hover:border-primary hover:bg-primary/10"
+                  className="border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200 hover:scale-110"
                   asChild
                 >
                   <a href="https://www.linkedin.com/in/helio-leite" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -73,7 +73,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-primary/30 hover:border-primary hover:bg-primary/10"
+                  className="border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200 hover:scale-110"
                   asChild
                 >
                   <a href="mailto:paulohelio751@gmail.com" aria-label="Email">
@@ -82,7 +82,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2"
+                  className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2 transition-all duration-200 hover:scale-105"
                   asChild
                 >
                   <a href="/dev-portforlio/cv-helio-paulo.pdf" download aria-label="Download CV">
@@ -120,32 +120,115 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
               </div>
             </div>
 
+            {/* Awards & Achievements */}
+            <div className="border-l-2 border-accent pl-4 mt-6">
+              <h3 className="text-lg font-semibold text-accent mb-2 flex items-center gap-2">
+                <Award className="w-5 h-5" />
+                $ cat awards.txt
+              </h3>
+              <div className="space-y-2">
+                <div className="transition-all duration-200 hover:translate-x-1">
+                  <p className="text-primary font-semibold">🏆 FeroCIT 2017 - Feira de Ciências e Tecnologia</p>
+                  <p className="text-foreground text-sm mt-1">
+                    Premiado com sistema de irrigação automatizado inteligente
+                  </p>
+                </div>
+                <div className="transition-all duration-200 hover:translate-x-1">
+                  <p className="text-primary font-semibold">🌍 Ciência Jovem Internacional 2017</p>
+                  <p className="text-foreground text-sm mt-1">
+                    Reconhecimento internacional por inovação em automação sustentável
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Technical Skills */}
+            <div className="border-l-2 border-primary pl-4 mt-6">
+              <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                <Code2 className="w-5 h-5" />
+                $ cat skills.json
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="transition-all duration-200 hover:translate-x-1">
+                  <p className="text-secondary font-semibold flex items-center gap-2">
+                    <Database className="w-4 h-4" />
+                    Banco de Dados
+                  </p>
+                  <p className="text-foreground text-sm">Oracle, SQL, Administração de BD</p>
+                </div>
+                <div className="transition-all duration-200 hover:translate-x-1">
+                  <p className="text-secondary font-semibold flex items-center gap-2">
+                    <Code2 className="w-4 h-4" />
+                    Programação
+                  </p>
+                  <p className="text-foreground text-sm">Python, RPA, C++, JavaScript</p>
+                </div>
+                <div className="transition-all duration-200 hover:translate-x-1">
+                  <p className="text-secondary font-semibold flex items-center gap-2">
+                    <Cpu className="w-4 h-4" />
+                    Hardware & IoT
+                  </p>
+                  <p className="text-foreground text-sm">Arduino, Sensores, Eletrônica</p>
+                </div>
+                <div className="transition-all duration-200 hover:translate-x-1">
+                  <p className="text-secondary font-semibold flex items-center gap-2">
+                    <Wrench className="w-4 h-4" />
+                    Infraestrutura
+                  </p>
+                  <p className="text-foreground text-sm">Linux (CentOS), Redes, Servidores, ITIL</p>
+                </div>
+              </div>
+            </div>
+
             {/* Experience Highlights */}
             <div className="border-l-2 border-secondary pl-4 mt-6">
-              <h3 className="text-lg font-semibold text-secondary mb-2">$ cat experience.log</h3>
+              <h3 className="text-lg font-semibold text-secondary mb-2 flex items-center gap-2">
+                <Briefcase className="w-5 h-5" />
+                $ cat experience.log
+              </h3>
               <div className="space-y-3">
-                <div>
-                  <p className="text-primary font-semibold">Analista de T.I @ Planeta Distribuidora LTDA</p>
+                <div className="transition-all duration-200 hover:translate-x-1 hover:bg-primary/5 p-2 rounded">
+                  <p className="text-primary font-semibold flex items-center gap-2">
+                    <Code2 className="w-4 h-4" />
+                    Analista de T.I @ Planeta Distribuidora LTDA
+                  </p>
                   <p className="text-muted-foreground text-sm">01/2025 - 07/2025 | Porto Velho, RO</p>
                   <p className="text-foreground text-sm mt-1">
                     Administração de redes, servidores e sistemas. Desenvolvimento de scripts e automações (RPA/Python). 
                     Gerenciamento de banco de dados Oracle. Suporte técnico de Nível 1, 2 e 3 (ITIL).
                   </p>
                 </div>
-                <div>
-                  <p className="text-primary font-semibold">Técnico em Eletrônica @ Del Engenharia Clínica</p>
+                <div className="transition-all duration-200 hover:translate-x-1 hover:bg-primary/5 p-2 rounded">
+                  <p className="text-primary font-semibold flex items-center gap-2">
+                    <Wrench className="w-4 h-4" />
+                    Técnico em Eletrônica @ Del Engenharia Clínica
+                  </p>
                   <p className="text-muted-foreground text-sm">09/2024 - 01/2025 | Porto Velho, RO</p>
                   <p className="text-foreground text-sm mt-1">
                     Manutenção preventiva e corretiva em equipamentos médicos hospitalares. Testes de segurança 
                     elétrica e calibrações precisas. Otimização de processos de manutenção.
                   </p>
                 </div>
-                <div>
-                  <p className="text-primary font-semibold">Técnico Eletrônico @ WPS Estacionamento LTDA</p>
+                <div className="transition-all duration-200 hover:translate-x-1 hover:bg-primary/5 p-2 rounded">
+                  <p className="text-primary font-semibold flex items-center gap-2">
+                    <Cpu className="w-4 h-4" />
+                    Técnico Eletrônico @ WPS Estacionamento LTDA
+                  </p>
                   <p className="text-muted-foreground text-sm">08/2023 - 09/2024 | Porto Velho, RO</p>
                   <p className="text-foreground text-sm mt-1">
                     Gestão de manutenção de máquinas (ATMs, Terminais de Cancela). Administração de banco de dados. 
                     Configuração e manutenção de redes. Montagem de sistemas Linux (CentOS) em servidores.
+                  </p>
+                </div>
+                <div className="transition-all duration-200 hover:translate-x-1 hover:bg-primary/5 p-2 rounded">
+                  <p className="text-primary font-semibold flex items-center gap-2">
+                    <Award className="w-4 h-4" />
+                    Líder de Equipe @ OBR - Olimpíada Brasileira de Robótica
+                  </p>
+                  <p className="text-muted-foreground text-sm">2019 e 2023</p>
+                  <p className="text-foreground text-sm mt-1">
+                    Liderança de equipe no desenvolvimento de carrinho de resgate autônomo com Arduino. 
+                    Programação, montagem e testes de robô seguidor de linha com sensores e atuadores.
                   </p>
                 </div>
               </div>
