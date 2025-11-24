@@ -99,12 +99,7 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
       url: "https://github.com/Dev-HP",
       username: "@Dev-HP"
     },
-    {
-      name: "Telefone",
-      icon: Phone,
-      url: "tel:+5569999020537",
-      username: "(69) 99902-0537"
-    }
+
   ];
 
   return (
@@ -131,11 +126,9 @@ DESCRIÇÃO
     --email     Envie um email direto para paulohelio751@gmail.com
     --social    Conecte-se nas redes sociais (LinkedIn, GitHub)
     --form      Preencha o formulário de contato
-    --phone     Ligue para (69) 99902-0537
 
 LOCALIZAÇÃO
     Porto Velho, Rondônia - Brasil
-    Avenida Brasília - Areal
 
 DISPONIBILIDADE
     Respondo geralmente em até 24 horas.
@@ -266,7 +259,6 @@ INTERESSES
                     Localização
                   </p>
                   <p className="text-muted-foreground text-xs">
-                    Avenida Brasília - Areal<br />
                     Porto Velho, Rondônia - Brasil
                   </p>
                 </div>
