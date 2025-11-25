@@ -55,10 +55,9 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
           SERVICE_ID,
           TEMPLATE_ID,
           {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-            to_email: 'paulohelio751@gmail.com'
+            name: formData.name,
+            email: formData.email,
+            message: formData.message
           },
           PUBLIC_KEY
         );
