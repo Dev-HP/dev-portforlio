@@ -51,6 +51,17 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
         console.log('   VITE_EMAILJS_PUBLIC_KEY=sua_public_key');
       } else {
         // Envio real com EmailJS
+        console.log('📤 Enviando email com os dados:', {
+          SERVICE_ID,
+          TEMPLATE_ID,
+          PUBLIC_KEY: PUBLIC_KEY.substring(0, 5) + '...',
+          templateParams: {
+            name: formData.name,
+            email: formData.email,
+            message: formData.message
+          }
+        });
+        
         await emailjs.send(
           SERVICE_ID,
           TEMPLATE_ID,
@@ -62,6 +73,7 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
           PUBLIC_KEY
         );
         
+        console.log('✅ Email enviado com sucesso!');
         toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.", {
           description: "Obrigado por entrar em contato!"
         });
