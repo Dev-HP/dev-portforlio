@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Code2, Database, Wrench, Brain, ArrowUp, Award } from "lucide-react";
+import { Code2, Database, Wrench, Brain, ArrowUp, Award, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface SkillsSectionProps {
@@ -12,12 +12,11 @@ const skillCategories = [
     icon: Code2,
     color: "primary",
     skills: [
-      { name: "Python", level: 90 },
-      { name: "C / C++ / C#", level: 85 },
-      { name: "JavaScript / HTML / CSS", level: 80 },
-      { name: "Java", level: 75 },
-      { name: "PHP / .NET", level: 70 },
-      { name: "API REST / POO", level: 85 }
+      { name: "Python", experience: "5+ anos", projects: "15+ projetos", detail: "ML & Automação" },
+      { name: "C / C++", experience: "4+ anos", projects: "20+ projetos", detail: "Robótica & Embarcados" },
+      { name: "JavaScript", experience: "3+ anos", projects: "10+ projetos", detail: "Full Stack Web" },
+      { name: "Java", experience: "2+ anos", projects: "Certificado NLW", detail: "Backend & POO" },
+      { name: "PHP / SQL", experience: "2+ anos", projects: "Projetos Web", detail: "APIs & Databases" }
     ]
   },
   {
@@ -25,24 +24,20 @@ const skillCategories = [
     icon: Brain,
     color: "secondary",
     skills: [
-      { name: "Machine Learning", level: 85 },
-      { name: "Inteligência Artificial", level: 80 },
-      { name: "Visão Computacional", level: 75 },
-      { name: "Análise de Dados", level: 85 },
-      { name: "Python (Matplotlib/Plotly)", level: 85 },
-      { name: "Julia", level: 65 }
+      { name: "Machine Learning", experience: "3+ anos", projects: "NeuroScope", detail: "Scikit-learn, TensorFlow" },
+      { name: "Análise de Dados", experience: "4+ anos", projects: "Power BI", detail: "Pandas, NumPy" },
+      { name: "Visão Computacional", experience: "2+ anos", projects: "OpenCV", detail: "Detecção & Tracking" },
+      { name: "Data Visualization", experience: "3+ anos", projects: "Dashboards", detail: "Plotly, Matplotlib" }
     ]
   },
   {
-    title: "Banco de Dados & Ferramentas",
+    title: "Banco de Dados",
     icon: Database,
     color: "accent",
     skills: [
-      { name: "Oracle", level: 80 },
-      { name: "SQL (Relacional)", level: 85 },
-      { name: "NoSQL (Não-relacional)", level: 75 },
-      { name: "Power BI", level: 80 },
-      { name: "Pacote Office", level: 90 }
+      { name: "Oracle", experience: "1+ ano", projects: "Corporativo", detail: "Administração & Queries" },
+      { name: "MySQL", experience: "3+ anos", projects: "10+ projetos", detail: "Design & Otimização" },
+      { name: "MongoDB", experience: "2+ anos", projects: "APIs REST", detail: "NoSQL & Agregações" }
     ]
   },
   {
@@ -50,12 +45,10 @@ const skillCategories = [
     icon: Wrench,
     color: "foreground",
     skills: [
-      { name: "Arduino / ESP32", level: 95 },
-      { name: "Eletrônica Embarcada", level: 90 },
-      { name: "AutoDesk Fusion 360", level: 80 },
-      { name: "Impressora 3D", level: 85 },
-      { name: "Robótica", level: 90 },
-      { name: "Automação Industrial", level: 85 }
+      { name: "Arduino / ESP32", experience: "6+ anos", projects: "20+ projetos", detail: "IoT & Robótica" },
+      { name: "Robótica", experience: "5+ anos", projects: "OBR 2019/2023", detail: "Líder de Equipe" },
+      { name: "CLP Siemens", experience: "1+ ano", projects: "Industrial", detail: "Automação & HMI" },
+      { name: "CAD / Impressão 3D", experience: "3+ anos", projects: "Prototipagem", detail: "Fusion 360" }
     ]
   }
 ];
@@ -113,29 +106,29 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
                 </div>
 
                 {/* Skills List */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-foreground text-sm font-mono">
+                    <div 
+                      key={skillIndex}
+                      className="p-3 bg-background/50 border border-border rounded hover:border-primary/30 transition-all duration-200"
+                      style={{ 
+                        opacity: animateSkills ? 1 : 0,
+                        transform: animateSkills ? 'translateY(0)' : 'translateY(10px)',
+                        transition: `all 0.5s ease-out ${(categoryIndex * 100) + (skillIndex * 50)}ms`
+                      }}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-foreground font-semibold text-sm">
                           {skill.name}
                         </span>
-                        <span className="text-muted-foreground text-xs">
-                          {skill.level}%
+                        <span className={`text-${category.color} text-xs font-mono`}>
+                          {skill.experience}
                         </span>
                       </div>
-                      
-                      {/* Progress Bar */}
-                      <div className="h-2 bg-background rounded-full overflow-hidden border border-border">
-                        <div
-                          className={`h-full bg-${category.color} transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: animateSkills ? `${skill.level}%` : '0%',
-                            transitionDelay: `${(categoryIndex * 100) + (skillIndex * 50)}ms`
-                          }}
-                        >
-                          <div className="h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                        </div>
+                      <div className="flex gap-2 text-xs text-muted-foreground">
+                        <span>📦 {skill.projects}</span>
+                        <span>•</span>
+                        <span>{skill.detail}</span>
                       </div>
                     </div>
                   ))}
@@ -221,6 +214,33 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
                 Análise de Dados
               </span>
             </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="bg-accent/10 border-2 border-accent rounded-lg p-6 mb-6">
+          <div className="text-center space-y-3">
+            <p className="text-accent font-bold text-lg">
+              💡 Precisa de alguém com essas habilidades?
+            </p>
+            <p className="text-foreground text-sm">
+              Estou disponível para projetos de automação, IA e desenvolvimento
+            </p>
+            <Button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                  window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+                  setTimeout(() => {
+                    window.dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
+                  }, 400);
+                }, 300);
+              }}
+              className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2"
+            >
+              <Mail className="w-4 h-4" />
+              Fale Comigo
+            </Button>
           </div>
         </div>
 

@@ -101,6 +101,16 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
 
         {/* Welcome Text */}
         <div className="mb-8 bg-card border border-border rounded p-6 shadow-lg">
+          {/* Award Badge */}
+          <div className="mb-4 p-3 bg-accent/10 border border-accent/30 rounded-lg text-center animate-in fade-in duration-700">
+            <p className="text-accent font-bold text-sm">
+              🏆 Premiado em Feiras Nacionais e Internacionais
+            </p>
+            <p className="text-muted-foreground text-xs mt-1">
+              FeroCIT 2017 • Ciência Jovem Internacional 2017
+            </p>
+          </div>
+
           <pre className="text-foreground whitespace-pre-wrap font-mono text-sm leading-relaxed">
             {displayedLines.map((line, i) => (
               <div key={i}>{line}</div>
@@ -128,7 +138,7 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
                   key={command.cmd}
                   onClick={() => onCommandExecute(command.cmd)}
                   variant="outline"
-                  className="justify-start h-auto py-4 px-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all group relative"
+                  className="justify-start h-auto py-4 px-4 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300 group relative hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
                   style={{ 
                     animationDelay: `${index * 100}ms`,
                     opacity: 0,
@@ -159,6 +169,11 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
               <p className="text-muted-foreground text-xs">
                 Pressione <kbd className="px-2 py-1 bg-secondary/20 text-secondary border border-secondary/30 rounded text-xs">ESC</kbd> para voltar
               </p>
+              <div className="mt-4 p-3 bg-accent/5 border border-accent/20 rounded">
+                <p className="text-accent text-sm font-semibold">
+                  🚀 Disponível para oportunidades em Automação, IA e Desenvolvimento
+                </p>
+              </div>
             </div>
           </div>
         )}

@@ -2,6 +2,19 @@ import { Mail, MapPin, Download, Award, Briefcase, Code2, Cpu, Wrench, Presentat
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
+// Helper function to navigate to contact
+const navigateToContact = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => {
+    // Trigger ESC to go back to main menu
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    // Then trigger contact command
+    setTimeout(() => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
+    }, 400);
+  }, 300);
+};
+
 interface AboutSectionProps {
   onBack: () => void;
 }
@@ -114,23 +127,23 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
             <div className="border-l-2 border-primary pl-4 animate-in slide-in-from-left duration-700">
               <h3 className="text-lg font-semibold text-primary mb-2">$ cat bio.txt</h3>
               <div className="text-foreground space-y-3">
-                <p>
-                  Profissional Full Stack de Automação, atuando na intersecção estratégica entre Hardware, 
-                  Software e Inteligência Artificial.
+                <p className="text-lg text-accent font-semibold">
+                  Transformo ideias em soluções automatizadas premiadas internacionalmente.
                 </p>
                 <p>
-                  Sou estudante de Engenharia de Controle e Automação (IFRO) e Engenharia de Software (UNINTER), 
-                  com forte interesse por tecnologia e inovação. Possuo experiência em manutenção eletrônica, 
-                  programação e desenvolvimento de projetos que integram hardware e software.
+                  Aos 17 anos, criei um sistema de irrigação inteligente que conquistou prêmios em feiras 
+                  nacionais e internacionais (FeroCIT 2017 e Ciência Jovem Internacional 2017). Hoje, combino 
+                  hardware, software e IA para resolver problemas reais — desde equipamentos médicos que salvam 
+                  vidas até sistemas de automação industrial que otimizam recursos.
                 </p>
                 <p>
-                  Criei e implementei um sistema de irrigação automatizado premiado em eventos nacionais e 
-                  internacionais (FeroCIT 2017 e Ciência Jovem Internacional 2017). Atualmente, desenvolvo 
-                  projetos envolvendo Inteligência Artificial, Machine Learning e automação industrial.
+                  Atuo na intersecção estratégica entre Engenharia de Controle e Automação (IFRO) e Engenharia 
+                  de Software (UNINTER), desenvolvendo projetos que integram Machine Learning, robótica e IoT. 
+                  Minha abordagem: identificar problemas complexos e criar soluções elegantes que geram impacto 
+                  mensurável.
                 </p>
-                <p>
-                  Busco oportunidades desafiadoras para aplicar minhas habilidades em eletrônica, automação 
-                  e desenvolvimento de sistemas, agregando valor através da inovação tecnológica.
+                <p className="text-accent">
+                  🚀 Disponível para oportunidades em Automação, IA e Desenvolvimento Full Stack
                 </p>
               </div>
             </div>
@@ -163,30 +176,46 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 <Code2 className="w-5 h-5" />
                 $ cat skills.txt
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
-                  <p className="text-secondary font-semibold mb-1">💻 Linguagens & Frameworks</p>
-                  <p className="text-foreground text-sm">Python, Java, JavaScript, C/C++, PHP, SQL</p>
+                  <p className="text-secondary font-semibold mb-2">💻 Linguagens & Frameworks</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-foreground">• <span className="text-primary">Python</span> - 5+ anos, 15+ projetos, Machine Learning & Automação</p>
+                    <p className="text-foreground">• <span className="text-primary">C/C++</span> - 4+ anos, Robótica & Sistemas Embarcados</p>
+                    <p className="text-foreground">• <span className="text-primary">JavaScript</span> - 3+ anos, Full Stack Web Development</p>
+                    <p className="text-foreground">• <span className="text-primary">Java</span> - Certificado NLW Connect, Projetos Acadêmicos</p>
+                  </div>
                 </div>
                 <div>
-                  <p className="text-secondary font-semibold mb-1">🗄️ Banco de Dados</p>
-                  <p className="text-foreground text-sm">Oracle, MySQL, MongoDB</p>
+                  <p className="text-secondary font-semibold mb-2">🗄️ Banco de Dados</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-foreground">• <span className="text-primary">Oracle</span> - Administração em ambiente corporativo</p>
+                    <p className="text-foreground">• <span className="text-primary">MySQL/MongoDB</span> - Projetos pessoais e acadêmicos</p>
+                  </div>
                 </div>
                 <div>
-                  <p className="text-secondary font-semibold mb-1">🤖 IA & Machine Learning</p>
-                  <p className="text-foreground text-sm">Scikit-learn, OpenCV, Pandas, NumPy, Power BI, Plotly</p>
+                  <p className="text-secondary font-semibold mb-2">🤖 IA & Machine Learning</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-foreground">• <span className="text-primary">Scikit-learn, Pandas, NumPy</span> - Análise de dados e ML</p>
+                    <p className="text-foreground">• <span className="text-primary">OpenCV</span> - Visão computacional aplicada</p>
+                    <p className="text-foreground">• <span className="text-primary">Power BI, Plotly</span> - Visualização de dados</p>
+                  </div>
                 </div>
                 <div>
-                  <p className="text-secondary font-semibold mb-1">⚙️ Hardware & Automação</p>
-                  <p className="text-foreground text-sm">Arduino, ESP32, CLP Siemens S7, HMI, PID</p>
+                  <p className="text-secondary font-semibold mb-2">⚙️ Hardware & Automação</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-foreground">• <span className="text-primary">Arduino/ESP32</span> - 6+ anos, 20+ projetos IoT</p>
+                    <p className="text-foreground">• <span className="text-primary">CLP Siemens S7</span> - Automação industrial</p>
+                    <p className="text-foreground">• <span className="text-primary">Robótica</span> - Líder OBR 2019 e 2023</p>
+                  </div>
                 </div>
                 <div>
-                  <p className="text-secondary font-semibold mb-1">🔧 Infraestrutura & DevOps</p>
-                  <p className="text-foreground text-sm">Linux, Windows Server, VMware, Docker, Git, Scrum, ITIL</p>
-                </div>
-                <div>
-                  <p className="text-secondary font-semibold mb-1">📜 Certificações</p>
-                  <p className="text-foreground text-sm">Git e Versionamento • NLW Connect (Java) • IoT • Redes com VLANs • NLW Pocket (JS Full-stack)</p>
+                  <p className="text-secondary font-semibold mb-2">🔧 Infraestrutura & DevOps</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-foreground">• <span className="text-primary">Linux/Windows Server</span> - Administração de sistemas</p>
+                    <p className="text-foreground">• <span className="text-primary">Docker, Git</span> - Certificado em versionamento</p>
+                    <p className="text-foreground">• <span className="text-primary">Scrum, ITIL</span> - Metodologias ágeis</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -302,25 +331,87 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
             <div className="border-l-2 border-primary pl-4 mt-6">
               <h3 className="text-lg font-semibold text-primary mb-2">$ echo $SPECIALIZATIONS</h3>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
+                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm transition-all duration-200 hover:scale-110 hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 cursor-default">
                   Robótica
                 </span>
-                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
+                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm transition-all duration-200 hover:scale-110 hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 cursor-default">
                   Automação
                 </span>
-                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
+                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm transition-all duration-200 hover:scale-110 hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 cursor-default">
                   Desenvolvimento Full Stack
                 </span>
-                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
+                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm transition-all duration-200 hover:scale-110 hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 cursor-default">
                   Análise de Dados
                 </span>
-                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
+                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm transition-all duration-200 hover:scale-110 hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 cursor-default">
                   Machine Learning
                 </span>
-                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm">
+                <span className="px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded text-sm transition-all duration-200 hover:scale-110 hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/20 cursor-default">
                   Inteligência Artificial
                 </span>
               </div>
+            </div>
+
+            {/* Stats Section */}
+            <div className="border-l-2 border-secondary pl-4 mt-6">
+              <h3 className="text-lg font-semibold text-secondary mb-4">$ cat stats.json</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="p-4 bg-secondary/10 border border-secondary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20">
+                  <p className="text-3xl font-bold text-secondary">20+</p>
+                  <p className="text-xs text-muted-foreground mt-1">Projetos Concluídos</p>
+                </div>
+                <div className="p-4 bg-accent/10 border border-accent/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20">
+                  <p className="text-3xl font-bold text-accent">6+</p>
+                  <p className="text-xs text-muted-foreground mt-1">Anos de Experiência</p>
+                </div>
+                <div className="p-4 bg-primary/10 border border-primary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                  <p className="text-3xl font-bold text-primary">2</p>
+                  <p className="text-xs text-muted-foreground mt-1">Prêmios Internacionais</p>
+                </div>
+                <div className="p-4 bg-secondary/10 border border-secondary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20">
+                  <p className="text-3xl font-bold text-secondary">10+</p>
+                  <p className="text-xs text-muted-foreground mt-1">Tecnologias</p>
+                </div>
+                <div className="p-4 bg-accent/10 border border-accent/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20">
+                  <p className="text-3xl font-bold text-accent">3</p>
+                  <p className="text-xs text-muted-foreground mt-1">Palestras Ministradas</p>
+                </div>
+                <div className="p-4 bg-primary/10 border border-primary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                  <p className="text-3xl font-bold text-primary">2x</p>
+                  <p className="text-xs text-muted-foreground mt-1">Líder OBR</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="bg-accent/10 border-2 border-accent rounded-lg p-6 mb-6 animate-in fade-in duration-500">
+          <div className="text-center space-y-3">
+            <p className="text-accent font-bold text-lg">
+              💼 Gostou do que viu?
+            </p>
+            <p className="text-foreground">
+              Vamos conversar sobre como posso contribuir com seu projeto ou equipe
+            </p>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <Button
+                onClick={navigateToContact}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                Entre em Contato
+              </Button>
+              <Button
+                variant="outline"
+                className="border-accent/30 hover:border-accent hover:bg-accent/10 gap-2"
+                asChild
+              >
+                <a href="/dev-portforlio/cv-helio-paulo.pdf" download>
+                  <Download className="w-4 h-4" />
+                  Download CV
+                </a>
+              </Button>
             </div>
           </div>
         </div>
