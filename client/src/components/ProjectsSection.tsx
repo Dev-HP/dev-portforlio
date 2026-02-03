@@ -15,17 +15,32 @@ const projects = [
     github: "https://github.com/Dev-HP/neuroscope",
     demo: null,
     status: "development",
-    award: "Publicação: ENFOC 2025 (maio/2025)"
+    award: "Publicação: ENFOC 2025 (maio/2025)",
+    team: null,
+    advisor: null,
+    links: []
   },
   {
-    name: "Sistema de Irrigação Automatizado",
-    description: "Sistema inteligente de irrigação utilizando Arduino que mede a umidade do solo e aciona automaticamente bombas quando necessário. Solução sustentável que otimiza o uso de recursos hídricos.",
-    impact: "Reduz consumo de água em 40% • Aumenta produtividade agrícola em 25%",
-    technologies: ["Arduino", "C++", "Sensores", "Automação", "IoT"],
+    name: "💧 Sistema Automatizado de Irrigação Sustentável",
+    description: "Sistema inteligente de irrigação desenvolvido no Colégio Tiradentes da Polícia Militar de Jacy-Paraná (2016-2017). Iniciado por Ryan Balestieri, aperfeiçoado e apresentado individualmente na FeroCIT 2017, conquistando vaga para representar Rondônia na Feira Internacional de Pernambuco. Na etapa internacional, Cleiton Vicentini integrou a equipe. O sistema mede umidade do solo via sensores conectados ao Arduino (programado em C), acionando automaticamente bombas/válvulas quando necessário. Opera com energia elétrica ou bateria, ideal para áreas rurais.",
+    impact: "Reduz desperdício de água em 40% • Aumenta produtividade agrícola em 25% • Monitoramento em tempo real",
+    technologies: ["Arduino", "C/C++", "Sensores de Umidade", "Automação", "IoT", "Energia Híbrida"],
     github: "https://github.com/Dev-HP/sistema-irrigacao",
     demo: null,
     status: "production",
-    award: "🏆 Premiado: FeroCIT 2017 e Ciência Jovem Internacional 2017"
+    award: "🏆 FeroCIT 2017 (Representante RO) • 🌍 Feira Internacional PE 2017",
+    team: "Hélio Paulo (líder), Ryan Balestieri (protótipo inicial), Cleiton Vicentini (etapa internacional)",
+    advisor: "Ten. PM Erika Josiani Ossucci",
+    links: [
+      {
+        label: "📰 Gov. RO",
+        url: "https://rondonia.ro.gov.br/estudantes-do-colegio-tiradentes-de-jacy-parana-participarao-da-feira-internacional-de-pernambuco/"
+      },
+      {
+        label: "📰 PM RO",
+        url: "https://www.pm.ro.gov.br/aluno-do-colegio-tiradentes-de-jacy-parana-expoe-em-feira-internacional-modelo-de-irrigacao-que-nao-desperdica-agua/"
+      }
+    ]
   },
   {
     name: "Line Following Robot",
@@ -35,7 +50,10 @@ const projects = [
     github: "https://github.com/Dev-HP/line-following-robot",
     demo: null,
     status: "production",
-    award: null
+    award: null,
+    team: null,
+    advisor: null,
+    links: []
   },
   {
     name: "Motor Nitro V1",
@@ -45,7 +63,10 @@ const projects = [
     github: "https://github.com/Dev-HP/motor-nitro-v1",
     demo: null,
     status: "production",
-    award: null
+    award: null,
+    team: null,
+    advisor: null,
+    links: []
   }
 ];
 
@@ -119,6 +140,22 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
                 </div>
               )}
 
+              {/* Team & Advisor */}
+              {(project.team || project.advisor) && (
+                <div className="mb-3 space-y-1">
+                  {project.team && (
+                    <p className="text-foreground/70 text-xs">
+                      <span className="text-primary font-semibold">👥 Equipe:</span> {project.team}
+                    </p>
+                  )}
+                  {project.advisor && (
+                    <p className="text-foreground/70 text-xs">
+                      <span className="text-secondary font-semibold">🎓 Orientação:</span> {project.advisor}
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* Description */}
               <p className="text-foreground text-sm mb-3">
                 {project.description}
@@ -145,7 +182,7 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
               </div>
 
               {/* Links */}
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Button
                   variant="outline"
                   size="sm"
@@ -170,6 +207,20 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
                     </a>
                   </Button>
                 )}
+                {project.links && project.links.length > 0 && project.links.map((link, linkIndex) => (
+                  <Button
+                    key={linkIndex}
+                    variant="outline"
+                    size="sm"
+                    className="border-cyan-500/30 hover:border-cyan-500 hover:bg-cyan-500/10 flex-1 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20"
+                    asChild
+                  >
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      {link.label}
+                    </a>
+                  </Button>
+                ))}
               </div>
             </div>
           ))}
