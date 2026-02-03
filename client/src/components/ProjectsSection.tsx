@@ -92,7 +92,7 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
             <p className="text-sm text-muted-foreground">Projetos Concluídos</p>
           </div>
           <div className="bg-card border border-secondary/30 rounded p-4 text-center hover:border-secondary transition-all duration-300 hover:scale-105">
-            <p className="text-3xl font-bold text-secondary">6+</p>
+            <p className="text-3xl font-bold text-secondary">4+</p>
             <p className="text-sm text-muted-foreground">Anos de Experiência</p>
           </div>
           <div className="bg-card border border-accent/30 rounded p-4 text-center hover:border-accent transition-all duration-300 hover:scale-105">
