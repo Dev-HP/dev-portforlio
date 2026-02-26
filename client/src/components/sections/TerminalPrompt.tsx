@@ -86,16 +86,6 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
 
         {/* Welcome Text */}
         <div className="mb-8 bg-card border border-border rounded p-6 shadow-lg">
-          {/* Award Badge */}
-          <div className="mb-4 p-3 bg-accent/10 border border-accent/30 rounded-lg text-center animate-in fade-in duration-700">
-            <p className="text-accent font-bold text-sm">
-              🏆 Premiado em Feiras Nacionais e Internacionais
-            </p>
-            <p className="text-muted-foreground text-xs mt-1">
-              FeroCIT 2017 • Ciência Jovem Internacional 2017
-            </p>
-          </div>
-
           <pre className="text-foreground whitespace-pre-wrap font-mono text-sm leading-relaxed">
             {displayedLines.map((line, i) => (
               <div key={i}>{line}</div>
