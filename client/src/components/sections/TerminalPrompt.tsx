@@ -146,7 +146,7 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
               </p>
               <div className="mt-4 p-3 bg-accent/5 border border-accent/20 rounded">
                 <p className="text-accent text-sm font-semibold">
-                  🚀 Disponível para oportunidades em Automação, IA e Desenvolvimento
+                  🚀 Disponível para projetos em Automação, IA e Desenvolvimento
                 </p>
               </div>
             </div>
