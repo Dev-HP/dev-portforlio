@@ -14,12 +14,12 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
   const [showCommands, setShowCommands] = useState(skipIntro);
   
   const asciiArt = `
- ██████╗ ███████╗██╗   ██╗    ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ 
- ██╔══██╗██╔════╝██║   ██║    ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗
- ██║  ██║█████╗  ██║   ██║    ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║
- ██║  ██║██╔══╝  ╚██╗ ██╔╝    ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║
- ██████╔╝███████╗ ╚████╔╝     ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝
- ╚═════╝ ╚══════╝  ╚═══╝      ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ 
+    ╔═══════════════════════════════════════════╗
+    ║                                           ║
+    ║         ✦ helio.dev ✦                    ║
+    ║         DESENVOLVEDOR & CRIADOR           ║
+    ║                                           ║
+    ╚═══════════════════════════════════════════╝
 `;
 
   const welcomeLines = [
@@ -96,7 +96,10 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
         {/* Mobile Header */}
         <div className="md:hidden mb-8 flex items-center justify-center gap-3">
           <Terminal className="w-12 h-12 text-primary terminal-glow" />
-          <h1 className="text-2xl font-bold text-primary terminal-glow">DEV PORTFOLIO</h1>
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-primary terminal-glow">helio.dev</h1>
+            <p className="text-xs text-foreground/70 mt-1">DESENVOLVEDOR & CRIADOR</p>
+          </div>
         </div>
 
         {/* Welcome Text */}
