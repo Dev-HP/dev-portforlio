@@ -1,11 +1,11 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import TerminalPrompt from "@/components/TerminalPrompt";
+import TerminalPrompt from "@/components/sections/TerminalPrompt";
 
 // Lazy load sections for better performance
-const AboutSection = lazy(() => import("@/components/AboutSection"));
-const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
-const SkillsSection = lazy(() => import("@/components/SkillsSection"));
-const ContactSection = lazy(() => import("@/components/ContactSection"));
+const AboutSection = lazy(() => import("@/components/sections/AboutSection"));
+const ProjectsSection = lazy(() => import("@/components/sections/ProjectsSection"));
+const SkillsSection = lazy(() => import("@/components/sections/SkillsSection"));
+const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
 
 // Loading component
 const SectionLoader = () => (
