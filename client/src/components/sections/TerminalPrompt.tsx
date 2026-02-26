@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Terminal } from "lucide-react";
+import TerminalHeader from "@/components/layout/TerminalHeader";
 
 interface TerminalPromptProps {
   onCommandExecute: (command: string) => void;
@@ -13,14 +13,7 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
   const [currentChar, setCurrentChar] = useState(0);
   const [showCommands, setShowCommands] = useState(skipIntro);
   
-  const asciiArt = `
-    ╔═══════════════════════════════════════════╗
-    ║                                           ║
-    ║         ✦ helio.dev ✦                    ║
-    ║         DESENVOLVEDOR & CRIADOR           ║
-    ║                                           ║
-    ╚═══════════════════════════════════════════╝
-`;
+  
 
   const welcomeLines = [
     "Loading Portfolio OS v1.0...",
@@ -88,19 +81,8 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 terminal-scanline">
       <div className="w-full max-w-4xl">
-        {/* ASCII Art Header */}
-        <pre className="text-primary text-xs sm:text-sm md:text-base mb-8 overflow-x-auto terminal-glow hidden md:block">
-          {asciiArt}
-        </pre>
-
-        {/* Mobile Header */}
-        <div className="md:hidden mb-8 flex items-center justify-center gap-3">
-          <Terminal className="w-12 h-12 text-primary terminal-glow" />
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-primary terminal-glow">helio.dev</h1>
-            <p className="text-xs text-foreground/70 mt-1">DESENVOLVEDOR & CRIADOR</p>
-          </div>
-        </div>
+        {/* New Header Component */}
+        <TerminalHeader />
 
         {/* Welcome Text */}
         <div className="mb-8 bg-card border border-border rounded p-6 shadow-lg">
