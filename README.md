@@ -1,196 +1,85 @@
-# 💻 Portfólio Interativo - Hélio Paulo Leite de Lima
+# Portfólio de Hélio Paulo
 
-Portfólio pessoal com tema terminal/hacker, desenvolvido com React, TypeScript e Tailwind CSS.
+> Portfólio pessoal com interface inspirada em terminal para apresentar projetos de sistemas inteligentes, automação, web e inteligência artificial.
 
-🌐 **[Ver Portfolio Online](https://dev-hp.github.io/dev-portforlio/)**
+- **Site:** [dev-hp.github.io/dev-portforlio](https://dev-hp.github.io/dev-portforlio/)
+- **Autor:** [Hélio Paulo Leite de Lima](https://github.com/Dev-HP)
+- **Status:** ativo, com deploy no GitHub Pages
 
-## ✨ Características
+## Por que este projeto existe
 
-- 🖥️ **Tema Terminal Interativo** - Interface inspirada em linha de comando
-- ⚡ **Performance Otimizada** - Animações rápidas e responsivas
-- 📱 **Totalmente Responsivo** - Funciona perfeitamente em mobile e desktop
-- ⌨️ **Navegação por Teclado** - Use ESC para voltar e teclas 1-4 para navegar
-- 🎨 **Animações Suaves** - Efeitos de digitação, glow e transições
-- 📧 **Formulário de Contato** - Integrado com EmailJS
-- 📄 **Download de CV** - Botão para baixar currículo em PDF
-- 🔍 **SEO Otimizado** - Meta tags para redes sociais
+O portfólio organiza projetos técnicos em uma experiência interativa, mas a informação principal deve continuar acessível mesmo sem animações, teclado ou estado local. O objetivo é permitir que uma pessoa recrutadora, cliente ou colaboradora entenda rapidamente o posicionamento profissional, veja evidências e encontre os repositórios correspondentes.
 
-## 🚀 Tecnologias
+## Características
 
-- **Frontend:** React 18 + TypeScript
-- **Styling:** Tailwind CSS v4
-- **Build:** Vite
-- **UI Components:** Radix UI
-- **Icons:** Lucide React
-- **Animations:** Framer Motion
-- **Forms:** React Hook Form + Zod
-- **Email:** EmailJS
-- **Deploy:** GitHub Pages (CI/CD automático)
+| Área | Descrição |
+|---|---|
+| Identidade | Tema terminal/hacker com navegação interativa e animações. |
+| Acessibilidade de uso | Navegação por teclado e layout responsivo para desktop e mobile. |
+| Contato | Formulário integrado ao EmailJS e links profissionais. |
+| Materiais | Download de currículo em PDF e links para projetos. |
+| Publicação | Build e deploy automatizados no GitHub Pages. |
 
-## 📦 Instalação
+## Demonstração visual
+
+![Perfil do autor](client/public/profile.jpg)
+
+Adicione também uma captura da tela inicial e um GIF curto mostrando a navegação entre os projetos. A primeira tela deve oferecer uma alternativa clara para acessar projetos, currículo e contato sem depender de esperar a animação de inicialização.
+
+## Stack
+
+- React 18 e TypeScript
+- Vite e Tailwind CSS
+- Framer Motion, Radix UI e Lucide React
+- React Hook Form e Zod
+- EmailJS
+- GitHub Pages e GitHub Actions
+
+## Execução local
 
 ```bash
-# Clone o repositório
 git clone https://github.com/Dev-HP/dev-portforlio.git
 cd dev-portforlio
-
-# Instale as dependências
 pnpm install
-
-# Configure as variáveis de ambiente
 cp .env.example .env
-# Edite o .env com suas credenciais
-
-# Inicie o servidor de desenvolvimento
 pnpm dev
 ```
 
-O projeto estará disponível em `http://localhost:3000/dev-portforlio/`
+Acesse o endereço exibido pelo Vite. Para testar o formulário de contato, configure as credenciais do EmailJS somente no arquivo local de ambiente.
 
-## ⚙️ Configuração
-
-### 1. EmailJS (Formulário de Contato)
-
-Para que o formulário de contato funcione:
-
-1. Crie uma conta em [EmailJS](https://www.emailjs.com/)
-2. Configure um serviço de email
-3. Crie um template
-4. Adicione as credenciais no `.env`
-
-📖 **[Ver guia completo](./EMAILJS_SETUP.md)**
-
-### 2. Adicionar seu CV
-
-1. Crie/exporte seu CV em PDF
-2. Renomeie para `cv-helio-paulo.pdf`
-3. Coloque em `client/public/`
-
-📖 **[Ver instruções detalhadas](./client/public/CV_INSTRUCTIONS.md)**
-
-## 🛠️ Scripts Disponíveis
+## Scripts
 
 ```bash
-# Desenvolvimento
-pnpm dev              # Inicia servidor de desenvolvimento
-
-# Build
-pnpm build            # Build para produção
-pnpm build:full       # Build completo (frontend + backend)
-
-# Preview
-pnpm preview          # Preview do build de produção
-
-# Qualidade de Código
-pnpm check            # Verifica tipos TypeScript
-pnpm format           # Formata código com Prettier
+pnpm dev       # desenvolvimento
+pnpm build     # build de produção
+pnpm preview   # preview do build
+pnpm check     # tipos TypeScript
+pnpm format    # formatação
 ```
 
-## 📁 Estrutura do Projeto
+## Estrutura
 
-```
-dev-portforlio/
-├── client/                 # Frontend
-│   ├── public/            # Arquivos estáticos
-│   │   ├── favicon.svg
-│   │   └── cv-helio-paulo.pdf
-│   └── src/
-│       ├── components/    # Componentes React
-│       │   ├── AboutSection.tsx
-│       │   ├── ProjectsSection.tsx
-│       │   ├── SkillsSection.tsx
-│       │   ├── ContactSection.tsx
-│       │   └── TerminalPrompt.tsx
-│       ├── pages/         # Páginas
-│       ├── hooks/         # Custom hooks
-│       └── lib/           # Utilitários
-├── .github/
-│   └── workflows/
-│       └── deploy.yml     # CI/CD GitHub Actions
-├── .env.example           # Exemplo de variáveis
-├── EMAILJS_SETUP.md       # Guia EmailJS
-└── README.md              # Este arquivo
+```text
+client/src/components/   seções de sobre, projetos, habilidades e contato
+client/src/pages/        páginas e estados de navegação
+client/src/hooks/        hooks reutilizáveis
+client/public/           favicon e currículo
+.github/workflows/       automação de deploy
+EMAILJS_SETUP.md         configuração do formulário
 ```
 
-## 🎨 Personalização
+## Conteúdo e curadoria
 
-### Cores do Tema
+Os projetos apresentados devem ter links funcionais, README próprio e uma descrição em formato de case: problema, solução, tecnologias, resultado e limitações. Evite listar ferramentas sem evidência visual ou sem explicar a decisão técnica.
 
-Edite `client/src/index.css`:
+## Deploy
 
-```css
---primary: oklch(0.78 0.20 210);    /* Cyan */
---secondary: oklch(0.72 0.34 328);  /* Magenta */
---accent: oklch(0.97 0.23 110);     /* Yellow */
---foreground: oklch(0.90 0.30 145); /* Green */
+O deploy é executado por GitHub Actions após push para a branch `main`. A URL pública é:
+
+```text
+https://dev-hp.github.io/dev-portforlio/
 ```
 
-### Conteúdo
+## Licença
 
-- **Sobre:** `client/src/components/AboutSection.tsx`
-- **Projetos:** `client/src/components/ProjectsSection.tsx`
-- **Habilidades:** `client/src/components/SkillsSection.tsx`
-- **Contato:** `client/src/components/ContactSection.tsx`
-
-## 🚀 Deploy
-
-O deploy é automático via GitHub Actions:
-
-1. Faça push para a branch `main`
-2. GitHub Actions faz o build
-3. Deploy automático no GitHub Pages
-
-**URL:** https://dev-hp.github.io/dev-portforlio/
-
-### Deploy Manual
-
-```bash
-pnpm build
-# Os arquivos estarão em dist/public/
-```
-
-## 📝 Roadmap
-
-- [x] Tema terminal interativo
-- [x] Navegação por teclado
-- [x] Formulário de contato com EmailJS
-- [x] Download de CV
-- [x] Meta tags para SEO
-- [x] Deploy automático
-- [ ] PWA (Progressive Web App)
-- [ ] Modo claro/escuro
-- [ ] Seção de blog
-- [ ] Analytics
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 👤 Autor
-
-**Hélio Paulo Leite de Lima**
-
-- GitHub: [@Dev-HP](https://github.com/Dev-HP)
-- LinkedIn: [/in/helio-leite](https://www.linkedin.com/in/helio-leite)
-- Email: paulohelio751@gmail.com
-
-## 🙏 Agradecimentos
-
-- Design inspirado em terminais Unix/Linux
-- Ícones por [Lucide](https://lucide.dev/)
-- UI Components por [Radix UI](https://www.radix-ui.com/)
-- Hospedagem por [GitHub Pages](https://pages.github.com/)
-
----
-
-⭐ Se este projeto te ajudou, considere dar uma estrela!
+Este projeto está sob a licença [MIT](LICENSE).
