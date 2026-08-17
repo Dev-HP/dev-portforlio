@@ -180,9 +180,9 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 <div>
                   <p className="text-secondary font-semibold mb-2">💻 Linguagens & Frameworks</p>
                   <div className="space-y-1 text-sm">
-                    <p className="text-foreground">• <span className="text-primary">Python</span> - 5+ anos, 15+ projetos, Machine Learning & Automação</p>
-                    <p className="text-foreground">• <span className="text-primary">C/C++</span> - 4+ anos, Robótica & Sistemas Embarcados</p>
-                    <p className="text-foreground">• <span className="text-primary">JavaScript</span> - 3+ anos, Full Stack Web Development</p>
+                    <p className="text-foreground">• <span className="text-primary">Python</span> - Machine Learning, automação e análise de dados</p>
+                    <p className="text-foreground">• <span className="text-primary">C/C++</span> - Robótica e sistemas embarcados</p>
+                    <p className="text-foreground">• <span className="text-primary">JavaScript</span> - Desenvolvimento web full stack</p>
                     <p className="text-foreground">• <span className="text-primary">Java</span> - Certificado NLW Connect, Projetos Acadêmicos</p>
                   </div>
                 </div>
@@ -204,7 +204,7 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
                 <div>
                   <p className="text-secondary font-semibold mb-2">⚙️ Hardware & Automação</p>
                   <div className="space-y-1 text-sm">
-                    <p className="text-foreground">• <span className="text-primary">Arduino/ESP32</span> - 6+ anos, 20+ projetos IoT</p>
+                    <p className="text-foreground">• <span className="text-primary">Arduino/ESP32</span> - Prototipagem IoT e robótica</p>
                     <p className="text-foreground">• <span className="text-primary">CLP Siemens S7</span> - Automação industrial</p>
                     <p className="text-foreground">• <span className="text-primary">Robótica</span> - Líder OBR 2019 e 2023</p>
                   </div>
@@ -356,30 +356,19 @@ export default function AboutSection({ onBack }: AboutSectionProps) {
             <div className="border-l-2 border-secondary pl-4 mt-6">
               <h3 className="text-lg font-semibold text-secondary mb-4">$ cat stats.json</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-secondary/10 border border-secondary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20">
-                  <p className="text-3xl font-bold text-secondary">20+</p>
-                  <p className="text-xs text-muted-foreground mt-1">Projetos Concluídos</p>
-                </div>
-                <div className="p-4 bg-accent/10 border border-accent/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20">
-                  <p className="text-3xl font-bold text-accent">6+</p>
-                  <p className="text-xs text-muted-foreground mt-1">Anos de Experiência</p>
-                </div>
-                <div className="p-4 bg-primary/10 border border-primary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
-                  <p className="text-3xl font-bold text-primary">2</p>
-                  <p className="text-xs text-muted-foreground mt-1">Prêmios Internacionais</p>
-                </div>
-                <div className="p-4 bg-secondary/10 border border-secondary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20">
-                  <p className="text-3xl font-bold text-secondary">10+</p>
-                  <p className="text-xs text-muted-foreground mt-1">Tecnologias</p>
-                </div>
-                <div className="p-4 bg-accent/10 border border-accent/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20">
-                  <p className="text-3xl font-bold text-accent">3</p>
-                  <p className="text-xs text-muted-foreground mt-1">Palestras Ministradas</p>
-                </div>
-                <div className="p-4 bg-primary/10 border border-primary/30 rounded text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
-                  <p className="text-3xl font-bold text-primary">2x</p>
-                  <p className="text-xs text-muted-foreground mt-1">Líder OBR</p>
-                </div>
+                {[
+                  ["IA", "Machine Learning"],
+                  ["IoT", "Automação"],
+                  ["Web", "Interfaces e APIs"],
+                  ["SQL", "Dados"],
+                  ["CAD", "Prototipagem"],
+                  ["Git", "Entrega de software"]
+                ].map(([value, label], index) => (
+                  <div key={label} className={`p-4 ${index % 2 === 0 ? "bg-secondary/10 border-secondary/30" : "bg-accent/10 border-accent/30"} border rounded text-center`}>
+                    <p className="text-3xl font-bold text-primary">{value}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -17,74 +17,44 @@ export default function ContactSection({ onBack }: ContactSectionProps) {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const emailJsConfig = {
+    serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+  };
+  const isEmailConfigured = Object.values(emailJsConfig).every(Boolean);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isEmailConfigured) {
+      toast.error("Formulário indisponível nesta publicação.", {
+        description: "Envie sua mensagem diretamente para paulohelio751@gmail.com."
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    
     try {
-      // EmailJS configuration
-      // Para configurar: https://www.emailjs.com/
-      // 1. Crie uma conta gratuita
-      // 2. Adicione um serviço de email (Gmail, Outlook, etc)
-      // 3. Crie um template de email
-      // 4. Substitua as variáveis abaixo com suas credenciais
-      
-      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
-      
-      // Se as credenciais não estão configuradas, simula o envio
-      if (SERVICE_ID === 'YOUR_SERVICE_ID') {
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        toast.success("Mensagem simulada! Configure EmailJS para envios reais.", {
-          description: "Veja o console para instruções."
-        });
-        console.log('📧 Para configurar EmailJS:');
-        console.log('1. Acesse https://www.emailjs.com/');
-        console.log('2. Crie uma conta gratuita');
-        console.log('3. Configure um serviço de email');
-        console.log('4. Crie um template');
-        console.log('5. Adicione as variáveis no arquivo .env:');
-        console.log('   VITE_EMAILJS_SERVICE_ID=seu_service_id');
-        console.log('   VITE_EMAILJS_TEMPLATE_ID=seu_template_id');
-        console.log('   VITE_EMAILJS_PUBLIC_KEY=sua_public_key');
-      } else {
-        // Envio real com EmailJS
-        console.log('📤 Enviando email com os dados:', {
-          SERVICE_ID,
-          TEMPLATE_ID,
-          PUBLIC_KEY: PUBLIC_KEY.substring(0, 5) + '...',
-          templateParams: {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-          }
-        });
-        
-        await emailjs.send(
-          SERVICE_ID,
-          TEMPLATE_ID,
-          {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-          },
-          PUBLIC_KEY
-        );
-        
-        console.log('✅ Email enviado com sucesso!');
-        toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.", {
-          description: "Obrigado por entrar em contato!"
-        });
-      }
-      
-      // Reset form
+      await emailjs.send(
+        emailJsConfig.serviceId,
+        emailJsConfig.templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        },
+        emailJsConfig.publicKey
+      );
+
+      toast.success("Mensagem enviada com sucesso!", {
+        description: "Obrigado por entrar em contato."
+      });
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error('Erro ao enviar email:', error);
-      toast.error("Erro ao enviar mensagem. Tente novamente ou use o email direto.", {
-        description: "paulohelio751@gmail.com"
+      console.error("Erro ao enviar email:", error);
+      toast.error("Não foi possível enviar a mensagem.", {
+        description: "Tente novamente ou use o email direto: paulohelio751@gmail.com."
       });
     } finally {
       setIsSubmitting(false);
@@ -164,13 +134,20 @@ INTERESSES
               </h3>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {!isEmailConfigured && (
+                <p className="rounded border border-accent/30 bg-accent/5 p-3 text-xs text-muted-foreground" role="status">
+                  O envio por formulário ainda não está configurado nesta publicação. Use o email direto abaixo.
+                </p>
+              )}
               <div>
-                <label className="text-foreground text-sm mb-1 block font-mono">
-                  Nome:
-                </label>
-                <Input
-                  type="text"
+                  <label htmlFor="contact-name" className="text-foreground text-sm mb-1 block font-mono">
+                    Nome:
+                  </label>
+                  <Input
+                    id="contact-name"
+                    name="name"
+                    type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Seu nome"
@@ -180,11 +157,13 @@ INTERESSES
               </div>
 
               <div>
-                <label className="text-foreground text-sm mb-1 block font-mono">
-                  Email:
-                </label>
-                <Input
-                  type="email"
+                  <label htmlFor="contact-email" className="text-foreground text-sm mb-1 block font-mono">
+                    Email:
+                  </label>
+                  <Input
+                    id="contact-email"
+                    name="email"
+                    type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="seu@email.com"
@@ -194,11 +173,13 @@ INTERESSES
               </div>
 
               <div>
-                <label className="text-foreground text-sm mb-1 block font-mono">
-                  Mensagem:
-                </label>
-                <Textarea
-                  value={formData.message}
+                  <label htmlFor="contact-message" className="text-foreground text-sm mb-1 block font-mono">
+                    Mensagem:
+                  </label>
+                  <Textarea
+                    id="contact-message"
+                    name="message"
+                    value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Sua mensagem..."
                   required
@@ -210,7 +191,7 @@ INTERESSES
               <Button
                 type="submit"
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !isEmailConfigured}
               >
                 {isSubmitting ? (
                   <>

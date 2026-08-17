@@ -10,9 +10,9 @@ const projects = [
   {
     name: "NeuroScope - Dashboard Clínico com IA",
     description: "Plataforma clínica baseada em Inteligência Artificial para apoiar o diagnóstico do Transtorno do Espectro Autista (TEA) em adultos. Utiliza algoritmos de Machine Learning (Random Forest, SVM, Redes Neurais) para análise de padrões clínicos.",
-    impact: "Precisão de 85% no diagnóstico de TEA • Reduz tempo de análise em 60%",
+    impact: "Protótipo de apoio à análise clínica; métricas de desempenho ainda precisam de validação independente.",
     technologies: ["Python", "Machine Learning", "IA", "Random Forest", "SVM", "Redes Neurais", "Matplotlib", "Plotly", "Microsserviços"],
-    github: "https://github.com/Dev-HP/neuroscope",
+    github: null,
     demo: null,
     status: "development",
     award: "Publicação: ENFOC 2025 (maio/2025)",
@@ -23,9 +23,9 @@ const projects = [
   {
     name: "💧 Sistema Automatizado de Irrigação Sustentável",
     description: "Sistema inteligente de irrigação desenvolvido no Colégio Tiradentes da Polícia Militar de Jacy-Paraná (2016-2017). Iniciado por Ryan Balestieri, aperfeiçoado e apresentado individualmente na FeroCIT 2017, conquistando vaga para representar Rondônia na Feira Internacional de Pernambuco. Na etapa internacional, Cleiton Vicentini integrou a equipe. O sistema mede umidade do solo via sensores conectados ao Arduino (programado em C), acionando automaticamente bombas/válvulas quando necessário. Opera com energia elétrica ou bateria, ideal para áreas rurais.",
-    impact: "Reduz desperdício de água em 40% • Aumenta produtividade agrícola em 25% • Monitoramento em tempo real",
+    impact: "Protótipo de irrigação automatizada apresentado em feira científica; economia e produtividade devem ser medidas em teste controlado.",
     technologies: ["Arduino", "C/C++", "Sensores de Umidade", "Automação", "IoT", "Energia Híbrida"],
-    github: "https://github.com/Dev-HP/sistema-irrigacao",
+    github: null,
     demo: null,
     status: "production",
     award: "🏆 FeroCIT 2017 (Representante RO) • 🌍 Feira Internacional PE 2017",
@@ -45,9 +45,9 @@ const projects = [
   {
     name: "Line Following Robot",
     description: "Robô autônomo seguidor de linha desenvolvido com Arduino para competições de robótica. Demonstra habilidades em programação embarcada, eletrônica e integração de sensores.",
-    impact: "Líder de equipe OBR 2019 e 2023 • Velocidade de 2m/s com precisão de 95%",
+    impact: "Protótipo de robótica para competições; desempenho depende da pista, calibração e configuração do hardware.",
     technologies: ["Arduino", "C++", "Robótica", "Sensores", "Eletrônica"],
-    github: "https://github.com/Dev-HP/line-following-robot",
+    github: null,
     demo: null,
     status: "production",
     award: null,
@@ -58,9 +58,9 @@ const projects = [
   {
     name: "Motor Nitro V1",
     description: "Projeto de robótica focado em programação e desenho técnico, aplicando conceitos de eletrônica para criar dispositivos autônomos com Arduino. Inclui modelagem 3D e prototipagem.",
-    impact: "Projeto acadêmico premiado • Integração completa CAD + Eletrônica + Software",
+    impact: "Protótipo acadêmico que integra CAD, eletrônica e software; documentação pública individual ainda não está disponível.",
     technologies: ["Arduino", "CAD", "Desenho Técnico", "Eletrônica", "C++"],
-    github: "https://github.com/Dev-HP/motor-nitro-v1",
+    github: null,
     demo: null,
     status: "production",
     award: null,
@@ -87,22 +87,17 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
 
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-card border border-primary/30 rounded p-4 text-center hover:border-primary transition-all duration-300 hover:scale-105">
-            <p className="text-3xl font-bold text-primary">20+</p>
-            <p className="text-sm text-muted-foreground">Projetos Concluídos</p>
-          </div>
-          <div className="bg-card border border-secondary/30 rounded p-4 text-center hover:border-secondary transition-all duration-300 hover:scale-105">
-            <p className="text-3xl font-bold text-secondary">4+</p>
-            <p className="text-sm text-muted-foreground">Anos de Experiência</p>
-          </div>
-          <div className="bg-card border border-accent/30 rounded p-4 text-center hover:border-accent transition-all duration-300 hover:scale-105">
-            <p className="text-3xl font-bold text-accent">2</p>
-            <p className="text-sm text-muted-foreground">Prêmios Internacionais</p>
-          </div>
-          <div className="bg-card border border-primary/30 rounded p-4 text-center hover:border-primary transition-all duration-300 hover:scale-105">
-            <p className="text-3xl font-bold text-primary">10+</p>
-            <p className="text-sm text-muted-foreground">Tecnologias Dominadas</p>
-          </div>
+          {[
+            [String(projects.length), "Cases selecionados"],
+            ["IA", "Área de foco"],
+            ["IoT", "Área de foco"],
+            ["Web", "Área de foco"]
+          ].map(([value, label], index) => (
+            <div key={label + index} className="bg-card border border-primary/30 rounded p-4 text-center">
+              <p className="text-3xl font-bold text-primary">{value}</p>
+              <p className="text-sm text-muted-foreground">{label}</p>
+            </div>
+          ))}
         </div>
 
         {/* Projects Grid */}
@@ -183,17 +178,23 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
 
               {/* Links */}
               <div className="flex flex-wrap gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-primary/30 hover:border-primary hover:bg-primary/10 flex-1 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-                  asChild
-                >
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4 mr-2" />
-                    GitHub
-                  </a>
-                </Button>
+                {project.github ? (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-primary/30 hover:border-primary hover:bg-primary/10 flex-1 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                    asChild
+                  >
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4 mr-2" />
+                      GitHub
+                    </a>
+                  </Button>
+                ) : (
+                  <span className="flex flex-1 items-center justify-center rounded border border-border px-3 py-2 text-xs text-muted-foreground">
+                    Repositório não publicado
+                  </span>
+                )}
                 {project.demo && (
                   <Button
                     variant="outline"
@@ -237,38 +238,6 @@ export default function ProjectsSection({ onBack }: ProjectsSectionProps) {
               <p>• Desenvolveu soluções sustentáveis premiadas para agricultura inteligente</p>
               <p>• Pesquisador em IA aplicada à saúde (diagnóstico de TEA)</p>
               <p>• Palestrante sobre IA e Machine Learning no IFRO</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonials Section */}
-        <div className="bg-card border border-border rounded p-6 mb-6">
-          <div className="border-l-2 border-accent pl-4">
-            <h3 className="text-lg font-semibold text-accent mb-4">
-              $ cat testimonials.txt
-            </h3>
-            <div className="space-y-4">
-              <div className="p-4 bg-accent/5 border border-accent/20 rounded hover:border-accent/40 transition-all duration-300">
-                <p className="text-foreground text-sm italic mb-2">
-                  "Hélio demonstrou excelente capacidade técnica e liderança ao coordenar a equipe de robótica. 
-                  Seu projeto de irrigação automatizada foi destaque nacional."
-                </p>
-                <p className="text-accent text-xs font-semibold">— Professor Orientador, IFRO</p>
-              </div>
-              <div className="p-4 bg-accent/5 border border-accent/20 rounded hover:border-accent/40 transition-all duration-300">
-                <p className="text-foreground text-sm italic mb-2">
-                  "Profissional dedicado e proativo. Implementou soluções de automação que otimizaram 
-                  significativamente nossos processos de TI."
-                </p>
-                <p className="text-accent text-xs font-semibold">— Gestor de TI, Planeta Distribuidora</p>
-              </div>
-              <div className="p-4 bg-accent/5 border border-accent/20 rounded hover:border-accent/40 transition-all duration-300">
-                <p className="text-foreground text-sm italic mb-2">
-                  "Conhecimento técnico sólido em eletrônica e automação. Sempre buscando aprender e 
-                  aplicar novas tecnologias nos projetos."
-                </p>
-                <p className="text-accent text-xs font-semibold">— Supervisor Técnico, Del Engenharia Clínica</p>
-              </div>
             </div>
           </div>
         </div>

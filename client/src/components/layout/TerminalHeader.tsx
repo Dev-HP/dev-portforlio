@@ -21,8 +21,8 @@ const TerminalHeader: React.FC = () => {
   useEffect(() => {
     let idx = 0;
     const id = setInterval(() => {
-      setTyped((prev) => prev + subtitle[idx]);
       idx += 1;
+      setTyped(subtitle.slice(0, idx));
       if (idx >= subtitle.length) clearInterval(id);
     }, 50);
     return () => clearInterval(id);
@@ -84,8 +84,11 @@ const TerminalHeader: React.FC = () => {
 
         {/* Tagline Principal com typing */}
         <div className="mt-2 text-center">
-          <h2 className="text-base sm:text-lg md:text-xl text-[#00FF80] font-bold tracking-[0.45em] uppercase opacity-95">
-            <span>{typed}</span>
+          <h2
+            className="text-base sm:text-lg md:text-xl text-[#00FF80] font-bold tracking-[0.45em] uppercase opacity-95"
+            aria-label={subtitle}
+          >
+            <span aria-hidden="true">{typed}</span>
             <span className="cursor" aria-hidden />
           </h2>
         </div>

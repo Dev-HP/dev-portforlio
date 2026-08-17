@@ -12,11 +12,11 @@ const skillCategories = [
     icon: Code2,
     color: "primary",
     skills: [
-      { name: "Python", experience: "5+ anos", projects: "15+ projetos", detail: "ML & Automação" },
-      { name: "C / C++", experience: "4+ anos", projects: "20+ projetos", detail: "Robótica & Embarcados" },
-      { name: "JavaScript", experience: "3+ anos", projects: "10+ projetos", detail: "Full Stack Web" },
-      { name: "Java", experience: "2+ anos", projects: "Certificado NLW", detail: "Backend & POO" },
-      { name: "PHP / SQL", experience: "2+ anos", projects: "Projetos Web", detail: "APIs & Databases" }
+      { name: "Python", experience: "Aplicação prática", projects: "ML & Automação", detail: "Scripts, APIs e análise" },
+      { name: "C / C++", experience: "Aplicação prática", projects: "Robótica & Embarcados", detail: "Sensores e controle" },
+      { name: "JavaScript", experience: "Aplicação prática", projects: "Full Stack Web", detail: "React, Vite e APIs" },
+      { name: "Java", experience: "Formação e prática", projects: "Backend & POO", detail: "Projetos acadêmicos" },
+      { name: "PHP / SQL", experience: "Aplicação prática", projects: "APIs & Databases", detail: "Modelagem e consultas" }
     ]
   },
   {
@@ -24,10 +24,10 @@ const skillCategories = [
     icon: Brain,
     color: "secondary",
     skills: [
-      { name: "Machine Learning", experience: "3+ anos", projects: "NeuroScope", detail: "Scikit-learn, TensorFlow" },
-      { name: "Análise de Dados", experience: "4+ anos", projects: "Power BI", detail: "Pandas, NumPy" },
-      { name: "Visão Computacional", experience: "2+ anos", projects: "OpenCV", detail: "Detecção & Tracking" },
-      { name: "Data Visualization", experience: "3+ anos", projects: "Dashboards", detail: "Plotly, Matplotlib" }
+      { name: "Machine Learning", experience: "Protótipos", projects: "NeuroScope", detail: "Scikit-learn e modelagem" },
+      { name: "Análise de Dados", experience: "Projetos", projects: "Power BI", detail: "Pandas e NumPy" },
+      { name: "Visão Computacional", experience: "Protótipos", projects: "OpenCV", detail: "Detecção e tracking" },
+      { name: "Data Visualization", experience: "Projetos", projects: "Dashboards", detail: "Plotly e Matplotlib" }
     ]
   },
   {
@@ -35,9 +35,9 @@ const skillCategories = [
     icon: Database,
     color: "accent",
     skills: [
-      { name: "Oracle", experience: "1+ ano", projects: "Corporativo", detail: "Administração & Queries" },
-      { name: "MySQL", experience: "3+ anos", projects: "10+ projetos", detail: "Design & Otimização" },
-      { name: "MongoDB", experience: "2+ anos", projects: "APIs REST", detail: "NoSQL & Agregações" }
+      { name: "Oracle", experience: "Experiência corporativa", projects: "Administração & Queries", detail: "Rotinas de dados" },
+      { name: "MySQL", experience: "Projetos", projects: "Design & Otimização", detail: "Modelagem relacional" },
+      { name: "MongoDB", experience: "Projetos", projects: "APIs REST", detail: "NoSQL e agregações" }
     ]
   },
   {
@@ -45,10 +45,10 @@ const skillCategories = [
     icon: Wrench,
     color: "foreground",
     skills: [
-      { name: "Arduino / ESP32", experience: "6+ anos", projects: "20+ projetos", detail: "IoT & Robótica" },
-      { name: "Robótica", experience: "5+ anos", projects: "OBR 2019/2023", detail: "Líder de Equipe" },
-      { name: "CLP Siemens", experience: "1+ ano", projects: "Industrial", detail: "Automação & HMI" },
-      { name: "CAD / Impressão 3D", experience: "3+ anos", projects: "Prototipagem", detail: "Fusion 360" }
+      { name: "Arduino / ESP32", experience: "Protótipos", projects: "IoT & Robótica", detail: "Sensores e atuadores" },
+      { name: "Robótica", experience: "Competições", projects: "Liderança de equipe", detail: "Controle e testes" },
+      { name: "CLP Siemens", experience: "Aplicação industrial", projects: "Automação & HMI", detail: "Lógica de controle" },
+      { name: "CAD / Impressão 3D", experience: "Prototipagem", projects: "Modelagem", detail: "Fusion 360" }
     ]
   }
 ];

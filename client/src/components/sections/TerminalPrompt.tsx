@@ -84,8 +84,37 @@ export default function TerminalPrompt({ onCommandExecute, skipIntro = false }: 
         {/* New Header Component */}
         <TerminalHeader />
 
+        {/* Resumo essencial visível antes da interação. */}
+        <section
+          aria-labelledby="portfolio-summary-title"
+          className="mb-6 rounded border border-primary/30 bg-card/80 p-5 shadow-lg"
+        >
+          <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">Software, automação e dados</p>
+          <h2 id="portfolio-summary-title" className="text-xl font-semibold text-foreground sm:text-2xl">
+            Desenvolvedor de software com foco em soluções full stack, IA e IoT.
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+            Porto Velho, Rondônia — construo protótipos e produtos que conectam interfaces, APIs, dados e hardware.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2" aria-label="Áreas principais">
+            {["React", "Python", "IA e dados", "Automação", "IoT"].map((item) => (
+              <span key={item} className="rounded border border-primary/30 px-2 py-1 text-xs text-primary">
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Button type="button" onClick={() => onCommandExecute("ls projects")} className="bg-primary text-primary-foreground hover:bg-primary/90">
+              Ver projetos
+            </Button>
+            <Button type="button" variant="outline" onClick={() => onCommandExecute("contact --help")}>
+              Entrar em contato
+            </Button>
+          </div>
+        </section>
+
         {/* Welcome Text */}
-        <div className="mb-8 bg-card border border-border rounded p-6 shadow-lg">
+        <div className="mb-8 bg-card border border-border rounded p-6 shadow-lg" aria-live="off">
           <pre className="text-foreground whitespace-pre-wrap font-mono text-sm leading-relaxed">
             {displayedLines.map((line, i) => (
               <div key={i}>{line}</div>
